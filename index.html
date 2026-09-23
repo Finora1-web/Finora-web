@@ -1,0 +1,3857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#07080c">
+<meta name="description" content="FINORA GLOBAL SERVICES — modern accounting, financial reporting, business support and advisory.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="FINORA GLOBAL SERVICES">
+<meta property="og:description" content="Finance with clarity. Move forward.">
+<title>FINORA — Global Financial Services</title>
+
+<style>
+/* ============================================================
+   FINORA ULTRA
+   Single-file experience
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#06070a;
+  --bg2:#0a0c10;
+  --surface:#0d1015;
+  --surface2:#11151c;
+  --surface3:#151a22;
+  --text:#f5f5ef;
+  --muted:#8c929d;
+  --muted2:#626974;
+  --gold:#d8b46b;
+  --gold2:#ffe3a2;
+  --green:#69e6aa;
+  --red:#ff7070;
+  --blue:#7db5ff;
+  --line:rgba(255,255,255,.085);
+  --line2:rgba(216,180,107,.24);
+  --max:1440px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+  background:var(--bg);
+}
+
+body{
+  background:
+    radial-gradient(circle at 75% 5%,rgba(216,180,107,.055),transparent 25%),
+    radial-gradient(circle at 10% 80%,rgba(70,110,170,.045),transparent 28%),
+    var(--bg);
+  color:var(--text);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+
+body::selection{
+  background:var(--gold);
+  color:#000;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea,
+select{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+img,
+svg{
+  max-width:100%;
+}
+
+::selection{
+  background:var(--gold);
+  color:#000;
+}
+
+/* ---------- UTILITIES ---------- */
+
+.container{
+  width:min(var(--max),calc(100% - 60px));
+  margin:auto;
+}
+
+.mono{
+  font-family:"DM Mono",monospace;
+}
+
+.gold{
+  color:var(--gold);
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.upper{
+  text-transform:uppercase;
+  letter-spacing:.18em;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* ---------- NOISE ---------- */
+
+.noise{
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  pointer-events:none;
+  opacity:.027;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:-4;
+  pointer-events:none;
+}
+
+/* ---------- CURSOR ---------- */
+
+.cursor-ring,
+.cursor-dot{
+  position:fixed;
+  pointer-events:none;
+  z-index:10000;
+  transform:translate(-50%,-50%);
+}
+
+.cursor-ring{
+  width:24px;
+  height:24px;
+  border:1px solid rgba(216,180,107,.7);
+  border-radius:50%;
+  transition:
+    width .35s var(--ease),
+    height .35s var(--ease),
+    background .35s,
+    border-color .35s;
+}
+
+.cursor-dot{
+  width:4px;
+  height:4px;
+  background:#fff;
+  border-radius:50%;
+}
+
+.cursor-ring.hover{
+  width:70px;
+  height:70px;
+  background:rgba(216,180,107,.06);
+  border-color:rgba(216,180,107,.35);
+}
+
+/* ---------- LOADER ---------- */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#050608;
+  display:grid;
+  place-items:center;
+  transition:opacity .9s var(--ease),visibility .9s;
+}
+
+.loader.done{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-box{
+  width:min(500px,80vw);
+  text-align:center;
+}
+
+.loader-logo{
+  font:800 clamp(42px,8vw,80px)/1 "Manrope",sans-serif;
+  letter-spacing:-.07em;
+}
+
+.loader-logo span{
+  color:var(--gold);
+}
+
+.loader-label{
+  margin-top:14px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+}
+
+.loader-progress{
+  height:1px;
+  background:#242831;
+  margin-top:40px;
+  overflow:hidden;
+}
+
+.loader-progress span{
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  animation:load 2s var(--ease) forwards;
+}
+
+@keyframes load{
+  to{width:100%}
+}
+
+/* ---------- TOP BAR ---------- */
+
+.topbar{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:900;
+  height:5px;
+  background:transparent;
+}
+
+.topbar-fill{
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  box-shadow:0 0 15px rgba(216,180,107,.35);
+}
+
+/* ---------- NAV ---------- */
+
+.nav{
+  position:fixed;
+  top:5px;
+  left:0;
+  right:0;
+  z-index:800;
+  padding:24px 30px;
+  transition:.45s var(--ease);
+}
+
+.nav.scrolled{
+  padding:12px 30px;
+  background:rgba(6,7,10,.72);
+  backdrop-filter:blur(25px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+  width:min(var(--max),100%);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font:800 19px "Manrope",sans-serif;
+  letter-spacing:-.03em;
+}
+
+.brand-mark{
+  width:30px;
+  height:30px;
+  border:1px solid var(--gold);
+  border-radius:9px;
+  position:relative;
+  transform:rotate(45deg);
+}
+
+.brand-mark::after{
+  content:"";
+  position:absolute;
+  inset:7px;
+  border:1px solid var(--gold);
+  border-radius:4px;
+}
+
+.brand span{
+  color:var(--gold);
+}
+
+.nav-center{
+  display:flex;
+  gap:30px;
+  align-items:center;
+}
+
+.nav-center a{
+  color:#9ba0a9;
+  font-size:12px;
+  position:relative;
+  transition:.3s;
+}
+
+.nav-center a:hover{
+  color:#fff;
+}
+
+.nav-center a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:100%;
+  bottom:-7px;
+  height:1px;
+  background:var(--gold);
+  transition:.3s var(--ease);
+}
+
+.nav-center a:hover::after{
+  right:0;
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.icon-btn{
+  width:40px;
+  height:40px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:rgba(255,255,255,.025);
+  color:#ddd;
+  display:grid;
+  place-items:center;
+  transition:.3s;
+}
+
+.icon-btn:hover{
+  border-color:var(--line2);
+  color:var(--gold);
+}
+
+.nav-contact{
+  padding:12px 18px;
+  border:1px solid var(--line2);
+  border-radius:100px;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  transition:.3s;
+}
+
+.nav-contact:hover{
+  background:var(--gold);
+  color:#050608;
+}
+
+.menu-btn{
+  display:none;
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+  min-height:100svh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding:150px 30px 100px;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:900px;
+  height:900px;
+  right:-300px;
+  top:-300px;
+  border-radius:50%;
+  border:1px solid rgba(216,180,107,.07);
+  box-shadow:
+    0 0 0 100px rgba(216,180,107,.018),
+    0 0 0 200px rgba(216,180,107,.012);
+  animation:heroOrbit 35s linear infinite;
+}
+
+@keyframes heroOrbit{
+  to{transform:rotate(360deg)}
+}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.027) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.027) 1px,transparent 1px);
+  background-size:75px 75px;
+  mask-image:linear-gradient(to bottom,#000,transparent 85%);
+}
+
+.hero-inner{
+  width:min(var(--max),100%);
+  margin:auto;
+  position:relative;
+  z-index:3;
+}
+
+.hero-kicker{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:32px;
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  opacity:0;
+  animation:fadeUp 1s .2s var(--ease) forwards;
+}
+
+.hero-kicker::before{
+  content:"";
+  width:42px;
+  height:1px;
+  background:var(--gold);
+}
+
+.hero-title{
+  font:800 clamp(64px,10.5vw,158px)/.83 "Manrope",sans-serif;
+  letter-spacing:-.085em;
+  max-width:1120px;
+}
+
+.hero-line{
+  display:block;
+  overflow:hidden;
+}
+
+.hero-word{
+  display:inline-block;
+  transform:translateY(120%);
+  opacity:0;
+  animation:titleReveal 1.15s var(--ease) forwards;
+}
+
+.hero-line:nth-child(2) .hero-word{
+  animation-delay:.1s;
+}
+
+.hero-line:nth-child(3) .hero-word{
+  animation-delay:.2s;
+}
+
+.hero-outline{
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.65);
+}
+
+@keyframes titleReveal{
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+.hero-meta{
+  margin-top:60px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:end;
+  gap:50px;
+  max-width:1000px;
+  opacity:0;
+  animation:fadeUp 1s .55s var(--ease) forwards;
+}
+
+.hero-copy{
+  max-width:480px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.85;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.btn{
+  min-height:52px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:0 23px;
+  border-radius:100px;
+  font-size:12px;
+  font-weight:700;
+  transition:.4s var(--ease);
+  position:relative;
+  overflow:hidden;
+}
+
+.btn-primary{
+  color:#050608;
+  background:linear-gradient(110deg,var(--gold),var(--gold2));
+}
+
+.btn-primary::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:translateX(-120%);
+  transition:.7s;
+}
+
+.btn-primary:hover::before{
+  transform:translateX(120%);
+}
+
+.btn-primary:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(216,180,107,.2);
+}
+
+.btn-secondary{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+}
+
+.btn-secondary:hover{
+  transform:translateY(-4px);
+  border-color:var(--line2);
+}
+
+.btn-arrow{
+  font-size:17px;
+  transition:.3s;
+}
+
+.btn:hover .btn-arrow{
+  transform:translate(4px,-4px);
+}
+
+.hero-command{
+  position:absolute;
+  right:5%;
+  bottom:10%;
+  width:330px;
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:rgba(12,15,20,.76);
+  backdrop-filter:blur(30px);
+  box-shadow:0 40px 100px rgba(0,0,0,.45);
+  transform:rotate(2deg);
+  animation:floatPanel 6s ease-in-out infinite;
+}
+
+@keyframes floatPanel{
+  0%,100%{transform:translateY(0) rotate(2deg)}
+  50%{transform:translateY(-14px) rotate(1deg)}
+}
+
+.command-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:15px;
+  border-bottom:1px solid var(--line);
+}
+
+.command-title{
+  font-size:10px;
+  color:#777d87;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+
+.live{
+  display:flex;
+  gap:6px;
+  align-items:center;
+  color:var(--green);
+  font-size:9px;
+}
+
+.live i{
+  width:6px;
+  height:6px;
+  background:var(--green);
+  border-radius:50%;
+  box-shadow:0 0 12px var(--green);
+  animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:.25}
+}
+
+.command-value{
+  padding-top:20px;
+  font:700 37px "Manrope",sans-serif;
+}
+
+.command-change{
+  color:var(--green);
+  font-size:10px;
+  margin-top:3px;
+}
+
+.command-chart{
+  height:115px;
+  margin-top:15px;
+}
+
+.command-chart svg{
+  width:100%;
+  height:100%;
+}
+
+.chart-line{
+  fill:none;
+  stroke:url(#goldLine);
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-dasharray:700;
+  stroke-dashoffset:700;
+  animation:draw 2.5s 1.5s ease forwards;
+  filter:drop-shadow(0 0 6px rgba(216,180,107,.5));
+}
+
+@keyframes draw{
+  to{stroke-dashoffset:0}
+}
+
+.command-footer{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.mini{
+  border:1px solid var(--line);
+  padding:10px;
+  border-radius:10px;
+}
+
+.mini small{
+  display:block;
+  color:#646b76;
+  font-size:8px;
+  text-transform:uppercase;
+}
+
+.mini strong{
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+}
+
+/* ---------- FADE UP ---------- */
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ---------- MARQUEE ---------- */
+
+.marquee{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+  background:#080a0e;
+}
+
+.marquee-track{
+  display:flex;
+  width:max-content;
+  animation:marquee 32s linear infinite;
+}
+
+.marquee-item{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  padding:22px 30px;
+  font:700 11px "Manrope",sans-serif;
+  letter-spacing:.22em;
+  color:#9297a0;
+  white-space:nowrap;
+}
+
+.marquee-item b{
+  color:var(--gold);
+  font-size:6px;
+}
+
+@keyframes marquee{
+  to{transform:translateX(-50%)}
+}
+
+/* ---------- SECTION ---------- */
+
+.section{
+  padding:160px 0;
+  position:relative;
+}
+
+.section-head{
+  display:grid;
+  grid-template-columns:1fr 390px;
+  gap:60px;
+  align-items:end;
+  margin-bottom:75px;
+}
+
+.section-number{
+  color:var(--gold);
+  font:400 10px "DM Mono",monospace;
+  letter-spacing:.2em;
+  margin-bottom:18px;
+}
+
+.section-title{
+  font:800 clamp(45px,6.5vw,92px)/.9 "Manrope",sans-serif;
+  letter-spacing:-.07em;
+}
+
+.section-description{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.9;
+}
+
+/* ---------- SERVICES EXPERIENCE ---------- */
+
+.service-stage{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:15px;
+}
+
+.service-menu{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.service-tab{
+  text-align:left;
+  padding:20px;
+  border:1px solid transparent;
+  background:transparent;
+  color:#727984;
+  border-radius:15px;
+  transition:.4s var(--ease);
+}
+
+.service-tab:hover{
+  color:#ddd;
+  background:rgba(255,255,255,.025);
+}
+
+.service-tab.active{
+  color:#fff;
+  background:linear-gradient(110deg,rgba(216,180,107,.11),rgba(255,255,255,.025));
+  border-color:var(--line2);
+}
+
+.service-tab small{
+  display:block;
+  color:var(--gold);
+  font:400 9px "DM Mono",monospace;
+  margin-bottom:8px;
+}
+
+.service-tab strong{
+  font:600 15px "Manrope",sans-serif;
+}
+
+.service-display{
+  min-height:550px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 80% 10%,rgba(216,180,107,.09),transparent 30%),
+    linear-gradient(135deg,#11151c,#090b0f);
+}
+
+.service-panel{
+  position:absolute;
+  inset:0;
+  padding:50px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateX(40px);
+  transition:.55s var(--ease);
+}
+
+.service-panel.active{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(0);
+}
+
+.service-panel-top{
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.service-icon-large{
+  width:70px;
+  height:70px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line2);
+  border-radius:20px;
+  color:var(--gold);
+  font-size:26px;
+}
+
+.service-panel-number{
+  color:#454b55;
+  font:400 12px "DM Mono",monospace;
+}
+
+.service-panel h3{
+  margin-top:55px;
+  max-width:700px;
+  font:700 clamp(35px,4.5vw,65px)/.95 "Manrope",sans-serif;
+  letter-spacing:-.06em;
+}
+
+.service-panel p{
+  max-width:600px;
+  color:var(--muted);
+  line-height:1.8;
+  margin-top:20px;
+}
+
+.service-points{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:35px;
+}
+
+.service-points span{
+  border:1px solid var(--line);
+  border-radius:100px;
+  padding:10px 13px;
+  color:#a7abb3;
+  font-size:10px;
+}
+
+/* ---------- ABOUT ---------- */
+
+.about-layout{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:100px;
+  align-items:center;
+}
+
+.monitor{
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:20px;
+  background:linear-gradient(145deg,#12161d,#080a0e);
+  box-shadow:0 50px 100px rgba(0,0,0,.35);
+  transform:perspective(1000px) rotateY(3deg);
+}
+
+.monitor-bar{
+  display:flex;
+  gap:6px;
+  padding-bottom:18px;
+}
+
+.monitor-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#343943;
+}
+
+.monitor-body{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:12px;
+}
+
+.side{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+}
+
+.side-line{
+  height:7px;
+  border-radius:20px;
+  background:#1d222a;
+  margin-bottom:12px;
+}
+
+.side-line.active{
+  background:rgba(216,180,107,.35);
+}
+
+.monitor-main{
+  display:grid;
+  gap:12px;
+}
+
+.metric-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.metric{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:14px;
+  background:rgba(255,255,255,.02);
+}
+
+.metric small{
+  display:block;
+  color:#646a75;
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+.metric strong{
+  display:block;
+  margin-top:8px;
+  font:600 20px "Manrope",sans-serif;
+}
+
+.big-chart{
+  height:220px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:10px;
+}
+
+.big-chart svg{
+  width:100%;
+  height:100%;
+}
+
+.big-line{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:800;
+  stroke-dashoffset:800;
+}
+
+.visible .big-line{
+  animation:draw 2.5s var(--ease) forwards;
+}
+
+.about-copy h3{
+  font:700 clamp(35px,4vw,58px)/1 "Manrope",sans-serif;
+  letter-spacing:-.06em;
+}
+
+.about-copy p{
+  margin-top:25px;
+  color:var(--muted);
+  line-height:1.9;
+  font-size:14px;
+}
+
+.feature-list{
+  margin-top:35px;
+  display:grid;
+  gap:13px;
+}
+
+.feature{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.feature-check{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  border:1px solid var(--line2);
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  font-size:10px;
+}
+
+.feature span{
+  font-size:13px;
+  color:#c2c5ca;
+}
+
+/* ---------- DATA BAND ---------- */
+
+.data-band{
+  padding:0 0 160px;
+}
+
+.data-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.data-cell{
+  padding:55px 30px;
+  border-right:1px solid var(--line);
+}
+
+.data-cell:last-child{
+  border-right:0;
+}
+
+.data-number{
+  font:700 clamp(36px,4.5vw,65px)/1 "Manrope",sans-serif;
+  letter-spacing:-.06em;
+}
+
+.data-label{
+  margin-top:10px;
+  color:#686f7a;
+  font-size:9px;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+
+/* ---------- PROCESS ---------- */
+
+.process-wrap{
+  position:relative;
+}
+
+.process-line{
+  position:absolute;
+  top:35px;
+  left:4%;
+  right:4%;
+  height:1px;
+  background:var(--line);
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.process-step{
+  position:relative;
+}
+
+.process-number{
+  width:70px;
+  height:70px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line2);
+  background:var(--bg);
+  border-radius:50%;
+  position:relative;
+  z-index:2;
+  color:var(--gold);
+  font:400 11px "DM Mono",monospace;
+  transition:.4s var(--ease);
+}
+
+.process-step:hover .process-number{
+  background:var(--gold);
+  color:#050608;
+  box-shadow:0 0 40px rgba(216,180,107,.2);
+}
+
+.process-step h3{
+  margin-top:30px;
+  font:700 20px "Manrope",sans-serif;
+}
+
+.process-step p{
+  margin-top:12px;
+  max-width:230px;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* ---------- INTERACTIVE INSIGHT ---------- */
+
+.insight{
+  margin-top:110px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:500px;
+  border:1px solid var(--line);
+  border-radius:32px;
+  overflow:hidden;
+  background:#0b0e13;
+}
+
+.insight-copy{
+  padding:65px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.insight-copy small{
+  color:var(--gold);
+  font:400 10px "DM Mono",monospace;
+  letter-spacing:.18em;
+}
+
+.insight-copy h3{
+  margin-top:20px;
+  font:700 clamp(38px,4vw,60px)/.95 "Manrope",sans-serif;
+  letter-spacing:-.06em;
+}
+
+.insight-copy p{
+  margin-top:20px;
+  color:var(--muted);
+  line-height:1.8;
+  max-width:470px;
+}
+
+.insight-visual{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(216,180,107,.14),transparent 30%),
+    #080a0e;
+}
+
+.radar{
+  position:absolute;
+  width:430px;
+  height:430px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  border:1px solid rgba(216,180,107,.14);
+}
+
+.radar::before,
+.radar::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(216,180,107,.09);
+}
+
+.radar::before{inset:70px}
+.radar::after{inset:140px}
+
+.radar-sweep{
+  position:absolute;
+  width:50%;
+  height:2px;
+  left:50%;
+  top:50%;
+  transform-origin:left;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  box-shadow:0 0 20px rgba(216,180,107,.4);
+  animation:sweep 5s linear infinite;
+}
+
+@keyframes sweep{
+  to{transform:rotate(360deg)}
+}
+
+.radar-dot{
+  position:absolute;
+  width:9px;
+  height:9px;
+  background:var(--gold2);
+  border-radius:50%;
+  box-shadow:0 0 20px var(--gold);
+}
+
+.dot1{left:30%;top:32%}
+.dot2{left:68%;top:27%}
+.dot3{left:57%;top:67%}
+.dot4{left:25%;top:64%}
+
+.insight-card{
+  position:absolute;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:rgba(10,12,16,.75);
+  backdrop-filter:blur(15px);
+  font-size:9px;
+  color:#aaa;
+}
+
+.ic1{top:17%;left:12%}
+.ic2{right:10%;top:42%}
+.ic3{bottom:16%;left:24%}
+
+/* ---------- FAQ ---------- */
+
+.faq{
+  max-width:950px;
+}
+
+.faq-item{
+  border-top:1px solid var(--line);
+}
+
+.faq-item:last-child{
+  border-bottom:1px solid var(--line);
+}
+
+.faq-question{
+  width:100%;
+  background:none;
+  color:#eee;
+  padding:25px 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  font:600 17px "Manrope",sans-serif;
+}
+
+.faq-plus{
+  width:30px;
+  height:30px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  transition:.4s;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .5s var(--ease);
+}
+
+.faq-answer p{
+  color:var(--muted);
+  line-height:1.8;
+  padding:0 50px 25px 0;
+  font-size:13px;
+}
+
+.faq-item.open .faq-plus{
+  transform:rotate(45deg);
+  background:var(--gold);
+  color:#000;
+}
+
+.faq-item.open .faq-answer{
+  max-height:180px;
+}
+
+/* ---------- TESTIMONIALS ---------- */
+
+.testimonial-shell{
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:linear-gradient(135deg,#10141b,#080a0e);
+}
+
+.testimonial-track{
+  display:flex;
+  transition:transform .65s var(--ease);
+}
+
+.testimonial{
+  min-width:100%;
+  padding:70px;
+}
+
+.quote-mark{
+  color:var(--gold);
+  font:700 80px/0 "Manrope",sans-serif;
+}
+
+.testimonial blockquote{
+  margin-top:25px;
+  max-width:950px;
+  font:500 clamp(27px,4vw,52px)/1.1 "Manrope",sans-serif;
+  letter-spacing:-.04em;
+}
+
+.testimonial-meta{
+  margin-top:35px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid var(--line2);
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  font-size:12px;
+}
+
+.testimonial-meta small{
+  color:var(--muted);
+}
+
+.slider-controls{
+  position:absolute;
+  right:25px;
+  bottom:25px;
+  display:flex;
+  gap:7px;
+}
+
+.slider-controls button{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  color:white;
+  transition:.3s;
+}
+
+.slider-controls button:hover{
+  background:var(--gold);
+  color:#000;
+}
+
+/* ---------- CTA ---------- */
+
+.final-cta{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  padding:130px 30px;
+  border:1px solid var(--line2);
+  border-radius:35px;
+  background:
+    radial-gradient(circle at 50% 120%,rgba(216,180,107,.18),transparent 45%),
+    linear-gradient(145deg,#11151c,#080a0e);
+}
+
+.final-cta::before{
+  content:"";
+  position:absolute;
+  width:600px;
+  height:600px;
+  left:50%;
+  top:50%;
+  border-radius:50%;
+  border:1px solid rgba(216,180,107,.07);
+  transform:translate(-50%,-50%);
+  animation:spin 30s linear infinite;
+}
+
+.final-cta-content{
+  position:relative;
+  z-index:2;
+}
+
+.final-cta small{
+  color:var(--gold);
+  font:400 10px "DM Mono",monospace;
+  letter-spacing:.25em;
+}
+
+.final-cta h2{
+  margin:25px auto 35px;
+  max-width:1000px;
+  font:800 clamp(52px,8vw,115px)/.85 "Manrope",sans-serif;
+  letter-spacing:-.08em;
+}
+
+/* ---------- CONTACT ---------- */
+
+.contact-layout{
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:100px;
+}
+
+.contact-intro h2{
+  font:800 clamp(48px,6vw,80px)/.88 "Manrope",sans-serif;
+  letter-spacing:-.075em;
+}
+
+.contact-intro p{
+  margin-top:25px;
+  color:var(--muted);
+  line-height:1.85;
+  max-width:400px;
+}
+
+.contact-details{
+  margin-top:45px;
+  display:grid;
+  gap:20px;
+}
+
+.detail-label{
+  color:#656b75;
+  font:400 9px "DM Mono",monospace;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.detail-value{
+  margin-top:6px;
+  color:#ddd;
+  font-size:14px;
+}
+
+.contact-form{
+  padding:35px;
+  border:1px solid var(--line);
+  border-radius:25px;
+  background:rgba(255,255,255,.018);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.field{
+  position:relative;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  border:1px solid var(--line);
+  outline:0;
+  color:#fff;
+  background:#0a0d12;
+  border-radius:13px;
+  padding:18px;
+  transition:.3s;
+}
+
+.field textarea{
+  height:160px;
+  resize:vertical;
+}
+
+.field select{
+  appearance:none;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+  border-color:rgba(216,180,107,.5);
+  box-shadow:0 0 35px rgba(216,180,107,.04);
+}
+
+.field label{
+  position:absolute;
+  left:15px;
+  top:18px;
+  padding:0 5px;
+  background:#0a0d12;
+  color:#646b75;
+  font-size:11px;
+  pointer-events:none;
+  transition:.3s;
+}
+
+.field input:focus+label,
+.field input:not(:placeholder-shown)+label,
+.field textarea:focus+label,
+.field textarea:not(:placeholder-shown)+label{
+  top:-7px;
+  color:var(--gold);
+  font-size:9px;
+}
+
+.form-bottom{
+  margin-top:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.form-note{
+  color:#5f6670;
+  font-size:10px;
+  line-height:1.5;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+  border-top:1px solid var(--line);
+  margin-top:80px;
+}
+
+.footer-top{
+  padding:80px 0;
+  display:grid;
+  grid-template-columns:1.4fr .6fr .6fr;
+  gap:60px;
+}
+
+.footer-big{
+  font:800 clamp(40px,5vw,70px)/.9 "Manrope",sans-serif;
+  letter-spacing:-.07em;
+}
+
+.footer-big span{
+  color:var(--gold);
+}
+
+.footer-col h4{
+  color:#666d77;
+  font:400 9px "DM Mono",monospace;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  margin-bottom:20px;
+}
+
+.footer-col a{
+  display:block;
+  margin-bottom:12px;
+  color:#b4b8bf;
+  font-size:12px;
+}
+
+.footer-col a:hover{
+  color:var(--gold);
+}
+
+.footer-bottom{
+  border-top:1px solid var(--line);
+  padding:25px 0;
+  display:flex;
+  justify-content:space-between;
+  color:#555c66;
+  font-size:10px;
+}
+
+/* ---------- COMMAND MENU ---------- */
+
+.command-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9500;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(15px);
+  display:grid;
+  place-items:start center;
+  padding-top:15vh;
+  opacity:0;
+  visibility:hidden;
+  transition:.35s;
+}
+
+.command-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.command-box{
+  width:min(650px,calc(100% - 30px));
+  border:1px solid var(--line2);
+  border-radius:22px;
+  background:#0b0e13;
+  box-shadow:0 50px 150px rgba(0,0,0,.65);
+  overflow:hidden;
+  transform:translateY(20px) scale(.98);
+  transition:.35s var(--ease);
+}
+
+.command-overlay.open .command-box{
+  transform:none;
+}
+
+.command-search{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:20px;
+  border-bottom:1px solid var(--line);
+}
+
+.command-search input{
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#fff;
+  font-size:15px;
+}
+
+.command-list{
+  padding:8px;
+  max-height:390px;
+  overflow:auto;
+}
+
+.command-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px;
+  border-radius:12px;
+  color:#bbbfc6;
+  cursor:pointer;
+}
+
+.command-item:hover{
+  background:rgba(216,180,107,.08);
+  color:#fff;
+}
+
+.command-key{
+  color:#545b65;
+  font:10px "DM Mono",monospace;
+}
+
+/* ---------- TOAST ---------- */
+
+.toast{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  z-index:9800;
+  max-width:350px;
+  padding:16px 18px;
+  border:1px solid var(--line2);
+  border-radius:15px;
+  background:#0d1117;
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
+  transform:translateY(30px);
+  opacity:0;
+  pointer-events:none;
+  transition:.4s var(--ease);
+}
+
+.toast.show{
+  transform:none;
+  opacity:1;
+}
+
+.toast strong{
+  display:block;
+  font-size:12px;
+}
+
+.toast span{
+  display:block;
+  color:var(--muted);
+  margin-top:4px;
+  font-size:10px;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:1050px){
+
+  .nav-center{
+    display:none;
+  }
+
+  .menu-btn{
+    display:grid;
+  }
+
+  .hero-command{
+    right:-100px;
+    opacity:.35;
+  }
+
+  .service-stage{
+    grid-template-columns:1fr;
+  }
+
+  .service-menu{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .about-layout{
+    gap:50px;
+  }
+
+  .contact-layout{
+    gap:50px;
+  }
+}
+
+@media(max-width:800px){
+
+  .container{
+    width:min(var(--max),calc(100% - 36px));
+  }
+
+  .nav{
+    padding:15px 18px;
+  }
+
+  .nav.scrolled{
+    padding:10px 18px;
+  }
+
+  .nav-actions .icon-btn{
+    display:none;
+  }
+
+  .nav-contact{
+    display:none;
+  }
+
+  .nav-center{
+    position:fixed;
+    display:flex;
+    inset:72px 15px auto;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    padding:15px;
+    border:1px solid var(--line);
+    border-radius:20px;
+    background:rgba(8,10,14,.96);
+    backdrop-filter:blur(25px);
+    transform:translateY(-20px);
+    opacity:0;
+    visibility:hidden;
+    transition:.4s;
+  }
+
+  .nav-center.open{
+    transform:none;
+    opacity:1;
+    visibility:visible;
+  }
+
+  .nav-center a{
+    width:100%;
+    padding:15px 10px;
+    font-size:14px;
+  }
+
+  .hero{
+    padding:130px 0 80px;
+  }
+
+  .hero-title{
+    font-size:clamp(55px,15vw,100px);
+  }
+
+  .hero-meta{
+    grid-template-columns:1fr;
+    gap:25px;
+    margin-top:45px;
+  }
+
+  .hero-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero-command{
+    display:none;
+  }
+
+  .section{
+    padding:100px 0;
+  }
+
+  .section-head{
+    grid-template-columns:1fr;
+    gap:25px;
+    margin-bottom:45px;
+  }
+
+  .service-menu{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .service-display{
+    min-height:600px;
+  }
+
+  .service-panel{
+    padding:30px;
+  }
+
+  .about-layout{
+    grid-template-columns:1fr;
+  }
+
+  .monitor{
+    transform:none;
+  }
+
+  .data-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .data-cell:nth-child(2){
+    border-right:0;
+  }
+
+  .data-cell{
+    border-bottom:1px solid var(--line);
+  }
+
+  .process-line{
+    display:none;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr 1fr;
+    gap:45px 20px;
+  }
+
+  .insight{
+    grid-template-columns:1fr;
+  }
+
+  .insight-visual{
+    min-height:420px;
+  }
+
+  .contact-layout{
+    grid-template-columns:1fr;
+  }
+
+  .footer-top{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-big{
+    grid-column:1/-1;
+  }
+}
+
+@media(max-width:550px){
+
+  .hero-buttons{
+    grid-template-columns:1fr;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .service-menu{
+    grid-template-columns:1fr;
+  }
+
+  .service-display{
+    min-height:650px;
+  }
+
+  .service-panel{
+    padding:25px;
+  }
+
+  .service-panel h3{
+    margin-top:35px;
+  }
+
+  .monitor-body{
+    grid-template-columns:1fr;
+  }
+
+  .side{
+    display:none;
+  }
+
+  .metric-row{
+    grid-template-columns:1fr;
+  }
+
+  .data-grid{
+    grid-template-columns:1fr;
+  }
+
+  .data-cell{
+    border-right:0;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr;
+  }
+
+  .insight-copy{
+    padding:40px 25px;
+  }
+
+  .testimonial{
+    padding:45px 25px 90px;
+  }
+
+  .contact-form{
+    padding:20px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .form-bottom{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .footer-top{
+    grid-template-columns:1fr;
+  }
+
+  .footer-big{
+    grid-column:auto;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .cursor-ring,
+  .cursor-dot{
+    display:none;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.001ms!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="noise"></div>
+<canvas id="particles"></canvas>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-box">
+    <div class="loader-logo">FINORA<span>.</span></div>
+    <div class="loader-label">Global Financial Services</div>
+    <div class="loader-progress"><span></span></div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- SCROLL PROGRESS -->
+<div class="topbar">
+  <div class="topbar-fill" id="progress"></div>
+</div>
+
+<!-- COMMAND MENU -->
+<div class="command-overlay" id="commandOverlay">
+  <div class="command-box">
+
+    <div class="command-search">
+      <span>⌕</span>
+      <input id="commandSearch" placeholder="Search FINORA..." autocomplete="off">
+    </div>
+
+    <div class="command-list" id="commandList">
+
+      <div class="command-item" data-go="#home">
+        <span>Go to Home</span>
+        <span class="command-key">HOME</span>
+      </div>
+
+      <div class="command-item" data-go="#services">
+        <span>Explore Services</span>
+        <span class="command-key">SERVICES</span>
+      </div>
+
+      <div class="command-item" data-go="#about">
+        <span>About FINORA</span>
+        <span class="command-key">ABOUT</span>
+      </div>
+
+      <div class="command-item" data-go="#approach">
+        <span>Our Approach</span>
+        <span class="command-key">APPROACH</span>
+      </div>
+
+      <div class="command-item" data-go="#faq">
+        <span>Frequently Asked Questions</span>
+        <span class="command-key">FAQ</span>
+      </div>
+
+      <div class="command-item" data-go="#contact">
+        <span>Contact FINORA</span>
+        <span class="command-key">CONTACT</span>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+
+  <div class="nav-inner">
+
+    <a class="brand" href="#home">
+      <span class="brand-mark"></span>
+      FINORA<span>.</span>
+    </a>
+
+    <div class="nav-center" id="navCenter">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#approach">Approach</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="nav-actions">
+
+      <button class="icon-btn magnetic" id="commandBtn" aria-label="Open search">
+        ⌕
+      </button>
+
+      <button class="icon-btn magnetic" id="themeBtn" aria-label="Change theme">
+        ◐
+      </button>
+
+      <a class="nav-contact magnetic" href="#contact">
+        Start a conversation ↗
+      </a>
+
+      <button class="icon-btn menu-btn" id="menuBtn">
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+
+  <div class="hero-grid"></div>
+
+  <div class="container hero-inner">
+
+    <div class="hero-kicker">
+      Global Financial Services
+    </div>
+
+    <h1 class="hero-title">
+
+      <span class="hero-line">
+        <span class="hero-word">FINANCE</span>
+      </span>
+
+      <span class="hero-line">
+        <span class="hero-word gold">WITH</span>
+        <span class="hero-word"> CLARITY.</span>
+      </span>
+
+      <span class="hero-line">
+        <span class="hero-word hero-outline">MOVE</span>
+        <span class="hero-word"> FORWARD.</span>
+      </span>
+
+    </h1>
+
+    <div class="hero-meta">
+
+      <p class="hero-copy">
+        Accounting, financial reporting, business support and advisory
+        designed to turn complex financial information into clearer
+        decisions.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#services" class="btn btn-primary magnetic">
+          Explore FINORA
+          <span class="btn-arrow">↗</span>
+        </a>
+
+        <a href="#contact" class="btn btn-secondary magnetic">
+          Start a conversation
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FLOATING COMMAND PANEL -->
+  <div class="hero-command">
+
+    <div class="command-top">
+      <span class="command-title">Financial Intelligence</span>
+
+      <span class="live">
+        <i></i>
+        SYSTEM ACTIVE
+      </span>
+    </div>
+
+    <div class="command-value">CLARITY</div>
+    <div class="command-change">↑ Better financial visibility</div>
+
+    <div class="command-chart">
+
+      <svg viewBox="0 0 330 115" preserveAspectRatio="none">
+
+        <defs>
+          <linearGradient id="goldLine" x1="0" x2="1">
+            <stop offset="0" stop-color="#a77b31"/>
+            <stop offset="1" stop-color="#ffe3a2"/>
+          </linearGradient>
+        </defs>
+
+        <path
+          class="chart-line"
+          d="M0 100
+             C20 98 30 78 52 84
+             S75 58 98 72
+             S120 35 143 48
+             S175 68 198 42
+             S225 55 247 26
+             S280 40 330 7"
+        />
+
+      </svg>
+
+    </div>
+
+    <div class="command-footer">
+
+      <div class="mini">
+        <small>Records</small>
+        <strong>Clear</strong>
+      </div>
+
+      <div class="mini">
+        <small>Insight</small>
+        <strong>Active</strong>
+      </div>
+
+      <div class="mini">
+        <small>Direction</small>
+        <strong>Forward</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee">
+
+  <div class="marquee-track">
+
+    <div class="marquee-item">ACCOUNTING <b>◆</b></div>
+    <div class="marquee-item">FINANCIAL REPORTING <b>◆</b></div>
+    <div class="marquee-item">TAX SUPPORT <b>◆</b></div>
+    <div class="marquee-item">BUSINESS SUPPORT <b>◆</b></div>
+    <div class="marquee-item">FINANCIAL ADVISORY <b>◆</b></div>
+    <div class="marquee-item">BUSINESS INSIGHTS <b>◆</b></div>
+
+    <div class="marquee-item">ACCOUNTING <b>◆</b></div>
+    <div class="marquee-item">FINANCIAL REPORTING <b>◆</b></div>
+    <div class="marquee-item">TAX SUPPORT <b>◆</b></div>
+    <div class="marquee-item">BUSINESS SUPPORT <b>◆</b></div>
+    <div class="marquee-item">FINANCIAL ADVISORY <b>◆</b></div>
+    <div class="marquee-item">BUSINESS INSIGHTS <b>◆</b></div>
+
+  </div>
+
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+
+  <div class="container">
+
+    <div class="section-head reveal">
+
+      <div>
+        <div class="section-number">01 / SERVICES</div>
+
+        <h2 class="section-title">
+          Financial support<br>
+          <span class="gold">without the noise.</span>
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Explore each capability through an interactive financial workspace
+        instead of a basic grid of cards.
+      </p>
+
+    </div>
+
+    <div class="service-stage reveal">
+
+      <div class="service-menu">
+
+        <button class="service-tab active" data-service="0">
+          <small>01</small>
+          <strong>Accounting & Bookkeeping</strong>
+        </button>
+
+        <button class="service-tab" data-service="1">
+          <small>02</small>
+          <strong>Financial Reporting</strong>
+        </button>
+
+        <button class="service-tab" data-service="2">
+          <small>03</small>
+          <strong>Tax Support</strong>
+        </button>
+
+        <button class="service-tab" data-service="3">
+          <small>04</small>
+          <strong>Financial Advisory</strong>
+        </button>
+
+        <button class="service-tab" data-service="4">
+          <small>05</small>
+          <strong>Business Support</strong>
+        </button>
+
+        <button class="service-tab" data-service="5">
+          <small>06</small>
+          <strong>Business Insights</strong>
+        </button>
+
+      </div>
+
+      <div class="service-display">
+
+        <article class="service-panel active">
+
+          <div class="service-panel-top">
+            <div class="service-icon-large">▦</div>
+            <div class="service-panel-number">01 / 06</div>
+          </div>
+
+          <h3>Accounting that gives your business a foundation.</h3>
+
+          <p>
+            Keep financial records structured, understandable and ready
+            to support everyday business decisions.
+          </p>
+
+          <div class="service-points">
+            <span>Bookkeeping</span>
+            <span>Record organization</span>
+            <span>Financial structure</span>
+            <span>Ongoing support</span>
+          </div>
+
+        </article>
+
+        <article class="service-panel">
+
+          <div class="service-panel-top">
+            <div class="service-icon-large">⌁</div>
+            <div class="service-panel-number">02 / 06</div>
+          </div>
+
+          <h3>Reports that turn numbers into understanding.</h3>
+
+          <p>
+            Present financial information clearly so the important details
+            are easier to see and interpret.
+          </p>
+
+          <div class="service-points">
+            <span>Financial reports</span>
+            <span>Management information</span>
+            <span>Performance visibility</span>
+            <span>Clear presentation</span>
+          </div>
+
+        </article>
+
+        <article class="service-panel">
+
+          <div class="service-panel-top">
+            <div class="service-icon-large">◇</div>
+            <div class="service-panel-number">03 / 06</div>
+          </div>
+
+          <h3>Tax support with a clearer financial picture.</h3>
+
+          <p>
+            Organize the information needed for tax-related processes and
+            maintain a clearer view of your financial position.
+          </p>
+
+          <div class="service-points">
+            <span>Tax information</span>
+            <span>Financial records</span>
+            <span>Organization</span>
+            <span>Support</span>
+          </div>
+
+        </article>
+
+        <article class="service-panel">
+
+          <div class="service-panel-top">
+            <div class="service-icon-large">↗</div>
+            <div class="service-panel-number">04 / 06</div>
+          </div>
+
+          <h3>Financial perspective for important decisions.</h3>
+
+          <p>
+            Look beyond individual numbers and consider the broader
+            financial picture when evaluating your next move.
+          </p>
+
+          <div class="service-points">
+            <span>Financial perspective</span>
+            <span>Planning</span>
+            <span>Evaluation</span>
+            <span>Decision support</span>
+          </div>
+
+        </article>
+
+        <article class="service-panel">
+
+          <div class="service-panel-top">
+            <div class="service-icon-large">◎</div>
+            <div class="service-panel-number">05 / 06</div>
+          </div>
+
+          <h3>Practical financial support for your operation.</h3>
+
+          <p>
+            Bring structure to the financial side of your business with
+            practical support around your requirements.
+          </p>
+
+          <div class="service-points">
+            <span>Business support</span>
+            <span>Organization</span>
+            <span>Financial processes</span>
+            <span>Practical guidance</span>
+          </div>
+
+        </article>
+
+        <article class="service-panel">
+
+          <div class="service-panel-top">
+            <div class="service-icon-large">◌</div>
+            <div class="service-panel-number">06 / 06</div>
+          </div>
+
+          <h3>See the information behind the business.</h3>
+
+          <p>
+            Use financial information to identify useful patterns and
+            create a clearer basis for planning.
+          </p>
+
+          <div class="service-points">
+            <span>Business insights</span>
+            <span>Analysis</span>
+            <span>Planning</span>
+            <span>Visibility</span>
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+
+  <div class="container">
+
+    <div class="section-head reveal">
+
+      <div>
+        <div class="section-number">02 / FINORA</div>
+
+        <h2 class="section-title">
+          The numbers<br>
+          <span class="gold">tell a story.</span>
+        </h2>
+      </div>
+
+      <p class="section-description">
+        Our approach is built around making financial information
+        useful—not simply making it available.
+      </p>
+
+    </div>
+
+    <div class="about-layout">
+
+      <div class="monitor reveal">
+
+        <div class="monitor-bar">
+          <i class="monitor-dot"></i>
+          <i class="monitor-dot"></i>
+          <i class="monitor-dot"></i>
+        </div>
+
+        <div class="monitor-body">
+
+          <div class="side">
+            <div class="side-line active"></div>
+            <div class="side-line"></div>
+            <div class="side-line"></div>
+            <div class="side-line"></div>
+            <div class="side-line"></div>
+            <div class="side-line"></div>
+          </div>
+
+          <div class="monitor-main">
+
+            <div class="metric-row">
+
+              <div class="metric">
+                <small>Visibility</small>
+                <strong>01</strong>
+              </div>
+
+              <div class="metric">
+                <small>Planning</small>
+                <strong>∞</strong>
+              </div>
+
+              <div class="metric">
+                <small>Direction</small>
+                <strong>↗</strong>
+              </div>
+
+            </div>
+
+            <div class="big-chart">
+
+              <svg viewBox="0 0 700 220" preserveAspectRatio="none">
+
+                <defs>
+                  <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#d8b46b" stop-opacity=".25"/>
+                    <stop offset="1" stop-color="#d8b46b" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+
+                <path
+                  d="M0 185 C80 175,80 120,150 145 S220 95,290 115 S350 60,420 100 S500 38,570 58 S640 35,700 12 L700 220 L0 220 Z"
+                  fill="url(#area)"
+                />
+
+                <path
+                  class="big-line"
+                  d="M0 185 C80 175,80 120,150 145 S220 95,290 115 S350 60,420 100 S500 38,570 58 S640 35,700 12"
+                />
+
+              </svg>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="about-copy reveal">
+
+        <h3>
+          Financial clarity should help you see what comes next.
+        </h3>
+
+        <p>
+          FINORA GLOBAL SERVICES brings together accounting, reporting,
+          support and financial perspective in a modern, straightforward
+          experience.
+        </p>
+
+        <div class="feature-list">
+
+          <div class="feature">
+            <div class="feature-check">✓</div>
+            <span>Structured financial information</span>
+          </div>
+
+          <div class="feature">
+            <div class="feature-check">✓</div>
+            <span>Clear communication</span>
+          </div>
+
+          <div class="feature">
+            <div class="feature-check">✓</div>
+            <span>Practical business support</span>
+          </div>
+
+          <div class="feature">
+            <div class="feature-check">✓</div>
+            <span>Financial thinking built around your needs</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- DATA -->
+<section class="data-band">
+
+  <div class="container">
+
+    <div class="data-grid reveal">
+
+      <div class="data-cell">
+        <div class="data-number">01</div>
+        <div class="data-label">Clear approach</div>
+      </div>
+
+      <div class="data-cell">
+        <div class="data-number">360°</div>
+        <div class="data-label">Business perspective</div>
+      </div>
+
+      <div class="data-cell">
+        <div class="data-number">24/7</div>
+        <div class="data-label">Digital accessibility</div>
+      </div>
+
+      <div class="data-cell">
+        <div class="data-number">∞</div>
+        <div class="data-label">Room to grow</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- APPROACH -->
+<section class="section" id="approach">
+
+  <div class="container">
+
+    <div class="section-head reveal">
+
+      <div>
+        <div class="section-number">03 / APPROACH</div>
+
+        <h2 class="section-title">
+          Four steps.<br>
+          <span class="gold">One direction.</span>
+        </h2>
+      </div>
+
+      <p class="section-description">
+        A simple process for turning financial information into
+        understanding and practical direction.
+      </p>
+
+    </div>
+
+    <div class="process-wrap reveal">
+
+      <div class="process-line"></div>
+
+      <div class="process-grid">
+
+        <div class="process-step">
+          <div class="process-number">01</div>
+          <h3>Understand</h3>
+          <p>Start with the business, its requirements and the financial picture.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">02</div>
+          <h3>Organize</h3>
+          <p>Bring the relevant information together in a structured way.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">03</div>
+          <h3>Analyze</h3>
+          <p>Look at the information and identify what matters.</p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-number">04</div>
+          <h3>Move Forward</h3>
+          <p>Use clearer information to support the next business step.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- INSIGHT VISUAL -->
+    <div class="insight reveal">
+
+      <div class="insight-copy">
+
+        <small>FINORA INTELLIGENCE</small>
+
+        <h3>
+          See the bigger financial picture.
+        </h3>
+
+        <p>
+          Financial information becomes more useful when the pieces are
+          connected. FINORA focuses on clarity, structure and perspective.
+        </p>
+
+        <div style="margin-top:30px">
+          <a href="#contact" class="btn btn-secondary magnetic">
+            Discuss your requirements
+            <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="insight-visual">
+
+        <div class="radar">
+          <div class="radar-sweep"></div>
+        </div>
+
+        <i class="radar-dot dot1"></i>
+        <i class="radar-dot dot2"></i>
+        <i class="radar-dot dot3"></i>
+        <i class="radar-dot dot4"></i>
+
+        <div class="insight-card ic1">RECORDS / CLEAR</div>
+        <div class="insight-card ic2">PLANNING / ACTIVE</div>
+        <div class="insight-card ic3">DIRECTION / ↗</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+
+  <div class="container">
+
+    <div class="section-head reveal">
+
+      <div>
+        <div class="section-number">04 / FAQ</div>
+
+        <h2 class="section-title">
+          Questions.<br>
+          <span class="gold">Answered.</span>
+        </h2>
+      </div>
+
+      <p class="section-description">
+        A few useful answers before you start a conversation.
+      </p>
+
+    </div>
+
+    <div class="faq reveal">
+
+      <div class="faq-item">
+
+        <button class="faq-question">
+          What services does FINORA provide?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <p>
+            FINORA provides accounting and bookkeeping, financial
+            reporting, tax support, financial advisory, business support
+            and business insight services.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="faq-item">
+
+        <button class="faq-question">
+          Can I discuss my requirements before starting?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <p>
+            Yes. You can use the contact section to send an inquiry and
+            describe what you need. The conversation can then begin around
+            your specific requirements.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="faq-item">
+
+        <button class="faq-question">
+          Do you support different types of businesses?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <p>
+            Requirements differ from business to business. Contact FINORA
+            with details about your situation so the appropriate support
+            can be discussed.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="faq-item">
+
+        <button class="faq-question">
+          How do I get started?
+          <span class="faq-plus">+</span>
+        </button>
+
+        <div class="faq-answer">
+          <p>
+            Simply send an inquiry through the contact form. Include your
+            name, company and a short description of what you would like
+            to discuss.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TESTIMONIAL-STYLE SECTION -->
+<section class="section">
+
+  <div class="container">
+
+    <div class="section-head reveal">
+
+      <div>
+        <div class="section-number">05 / PERSPECTIVE</div>
+
+        <h2 class="section-title">
+          Built around<br>
+          <span class="gold">clarity.</span>
+        </h2>
+      </div>
+
+      <p class="section-description">
+        The FINORA experience is designed to make financial conversations
+        simpler and more focused.
+      </p>
+
+    </div>
+
+    <div class="testimonial-shell reveal">
+
+      <div class="testimonial-track" id="testimonialTrack">
+
+        <article class="testimonial">
+
+          <div class="quote-mark">“</div>
+
+          <blockquote>
+            Financial information becomes powerful when it is clear enough
+            to understand and practical enough to use.
+          </blockquote>
+
+          <div class="testimonial-meta">
+            <div class="avatar">F</div>
+            <small>FINORA / PRINCIPLE 01</small>
+          </div>
+
+        </article>
+
+        <article class="testimonial">
+
+          <div class="quote-mark">“</div>
+
+          <blockquote>
+            Good financial support is not about making things complicated.
+            It is about making the important things easier to see.
+          </blockquote>
+
+          <div class="testimonial-meta">
+            <div class="avatar">F</div>
+            <small>FINORA / PRINCIPLE 02</small>
+          </div>
+
+        </article>
+
+        <article class="testimonial">
+
+          <div class="quote-mark">“</div>
+
+          <blockquote>
+            Clear records create better visibility. Better visibility creates
+            a stronger basis for the next decision.
+          </blockquote>
+
+          <div class="testimonial-meta">
+            <div class="avatar">F</div>
+            <small>FINORA / PRINCIPLE 03</small>
+          </div>
+
+        </article>
+
+      </div>
+
+      <div class="slider-controls">
+
+        <button id="prevTestimonial">←</button>
+        <button id="nextTestimonial">→</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FINAL CTA -->
+<section class="section">
+
+  <div class="container">
+
+    <div class="final-cta reveal">
+
+      <div class="final-cta-content">
+
+        <small>READY WHEN YOU ARE</small>
+
+        <h2>
+          YOUR BUSINESS.<br>
+          <span class="gold">YOUR NUMBERS.</span>
+        </h2>
+
+        <a href="#contact" class="btn btn-primary magnetic">
+          Start a Conversation
+          <span class="btn-arrow">↗</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+
+  <div class="container">
+
+    <div class="contact-layout">
+
+      <div class="contact-intro reveal">
+
+        <div class="section-number">06 / CONTACT</div>
+
+        <h2>
+          Let's talk<br>
+          <span class="gold">numbers.</span>
+        </h2>
+
+        <p>
+          Have a question, a requirement or a business idea you want
+          to discuss? Send a message and start the conversation.
+        </p>
+
+        <div class="contact-details">
+
+          <div>
+            <div class="detail-label">Email</div>
+            <div class="detail-value">info@finoraglobalservices.com</div>
+          </div>
+
+          <div>
+            <div class="detail-label">Location</div>
+            <div class="detail-value">United Arab Emirates</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <form class="contact-form reveal" id="contactForm">
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <input
+              type="text"
+              id="name"
+              placeholder=" "
+              required
+            >
+
+            <label for="name">Your name</label>
+
+          </div>
+
+          <div class="field">
+
+            <input
+              type="email"
+              id="email"
+              placeholder=" "
+              required
+            >
+
+            <label for="email">Email address</label>
+
+          </div>
+
+          <div class="field">
+
+            <input
+              type="text"
+              id="company"
+              placeholder=" "
+            >
+
+            <label for="company">Company</label>
+
+          </div>
+
+          <div class="field">
+
+            <select id="service">
+
+              <option value="" selected>Service you're interested in</option>
+              <option>Accounting & Bookkeeping</option>
+              <option>Financial Reporting</option>
+              <option>Tax Support</option>
+              <option>Financial Advisory</option>
+              <option>Business Support</option>
+              <option>Business Insights</option>
+
+            </select>
+
+          </div>
+
+          <div class="field full">
+
+            <textarea
+              id="message"
+              placeholder=" "
+              required
+            ></textarea>
+
+            <label for="message">Tell us about your requirements</label>
+
+          </div>
+
+        </div>
+
+        <div class="form-bottom">
+
+          <div class="form-note">
+            Your inquiry will open your email application with the
+            message prepared for FINORA.
+          </div>
+
+          <button class="btn btn-primary magnetic" type="submit">
+            Send Inquiry
+            <span class="btn-arrow">↗</span>
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="container">
+
+    <div class="footer-top">
+
+      <div class="footer-big">
+        FINORA<span>.</span><br>
+        <span>Move forward.</span>
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Explore</h4>
+
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#approach">Approach</a>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Connect</h4>
+
+        <a href="#contact">Contact</a>
+        <a href="mailto:info@finoraglobalservices.com">
+          Email
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      <span>
+        © <span id="year"></span> FINORA GLOBAL SERVICES
+      </span>
+
+      <span>
+        FINANCE / CLARITY / DIRECTION
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <strong id="toastTitle">FINORA</strong>
+  <span id="toastText">Message</span>
+</div>
+
+<script>
+/* ============================================================
+   FINORA ULTRA ENGINE
+   ============================================================ */
+
+/* ---------- LOADER ---------- */
+
+window.addEventListener("load",function(){
+
+  setTimeout(function(){
+
+    document
+      .getElementById("loader")
+      .classList.add("done");
+
+  },2100);
+
+});
+
+
+/* ---------- NAV SCROLL ---------- */
+
+const nav=document.getElementById("nav");
+
+window.addEventListener("scroll",function(){
+
+  nav.classList.toggle(
+    "scrolled",
+    window.scrollY>40
+  );
+
+});
+
+
+/* ---------- SCROLL PROGRESS ---------- */
+
+const progress=document.getElementById("progress");
+
+window.addEventListener("scroll",function(){
+
+  const scrollTop=window.scrollY;
+  const height=document.documentElement.scrollHeight-window.innerHeight;
+
+  const percent=height>0
+    ? (scrollTop/height)*100
+    : 0;
+
+  progress.style.width=percent+"%";
+
+});
+
+
+/* ---------- MOBILE NAV ---------- */
+
+const menuBtn=document.getElementById("menuBtn");
+const navCenter=document.getElementById("navCenter");
+
+menuBtn.addEventListener("click",function(){
+
+  navCenter.classList.toggle("open");
+
+});
+
+document
+  .querySelectorAll(".nav-center a")
+  .forEach(function(link){
+
+    link.addEventListener("click",function(){
+      navCenter.classList.remove("open");
+    });
+
+  });
+
+
+/* ---------- COMMAND MENU ---------- */
+
+const commandOverlay=document.getElementById("commandOverlay");
+const commandBtn=document.getElementById("commandBtn");
+const commandSearch=document.getElementById("commandSearch");
+
+function openCommand(){
+
+  commandOverlay.classList.add("open");
+
+  setTimeout(function(){
+    commandSearch.focus();
+  },200);
+
+}
+
+function closeCommand(){
+
+  commandOverlay.classList.remove("open");
+
+}
+
+commandBtn.addEventListener("click",openCommand);
+
+commandOverlay.addEventListener("click",function(e){
+
+  if(e.target===commandOverlay){
+    closeCommand();
+  }
+
+});
+
+document.addEventListener("keydown",function(e){
+
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){
+
+    e.preventDefault();
+    openCommand();
+
+  }
+
+  if(e.key==="Escape"){
+    closeCommand();
+  }
+
+});
+
+document
+  .querySelectorAll(".command-item")
+  .forEach(function(item){
+
+    item.addEventListener("click",function(){
+
+      const target=document.querySelector(
+        item.dataset.go
+      );
+
+      closeCommand();
+
+      if(target){
+
+        setTimeout(function(){
+
+          target.scrollIntoView({
+            behavior:"smooth"
+          });
+
+        },100);
+
+      }
+
+    });
+
+  });
+
+
+/* COMMAND SEARCH */
+
+commandSearch.addEventListener("input",function(){
+
+  const query=this.value.toLowerCase();
+
+  document
+    .querySelectorAll(".command-item")
+    .forEach(function(item){
+
+      item.style.display =
+        item.textContent.toLowerCase().includes(query)
+        ? "flex"
+        : "none";
+
+    });
+
+});
+
+
+/* ---------- THEME EFFECT ---------- */
+
+const themeBtn=document.getElementById("themeBtn");
+
+let softMode=false;
+
+themeBtn.addEventListener("click",function(){
+
+  softMode=!softMode;
+
+  document.documentElement.style.setProperty(
+    "--gold",
+    softMode ? "#e3c68c" : "#d8b46b"
+  );
+
+  showToast(
+    "FINORA",
+    softMode
+      ? "Warm visual mode activated."
+      : "Signature FINORA mode restored."
+  );
+
+});
+
+
+/* ---------- SERVICE EXPLORER ---------- */
+
+const tabs=document.querySelectorAll(".service-tab");
+const panels=document.querySelectorAll(".service-panel");
+
+tabs.forEach(function(tab,index){
+
+  tab.addEventListener("click",function(){
+
+    tabs.forEach(function(t){
+      t.classList.remove("active");
+    });
+
+    panels.forEach(function(p){
+      p.classList.remove("active");
+    });
+
+    tab.classList.add("active");
+
+    if(panels[index]){
+      panels[index].classList.add("active");
+    }
+
+  });
+
+});
+
+
+/* ---------- FAQ ---------- */
+
+document
+  .querySelectorAll(".faq-question")
+  .forEach(function(question){
+
+    question.addEventListener("click",function(){
+
+      const item=question.parentElement;
+
+      document
+        .querySelectorAll(".faq-item")
+        .forEach(function(other){
+
+          if(other!==item){
+            other.classList.remove("open");
+          }
+
+        });
+
+      item.classList.toggle("open");
+
+    });
+
+  });
+
+
+/* ---------- REVEAL ENGINE ---------- */
+
+const revealObserver=
+  new IntersectionObserver(
+    function(entries){
+
+      entries.forEach(function(entry){
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("visible");
+
+          if(entry.target.classList.contains("reveal")){
+            entry.target.classList.add("in-view");
+          }
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+document
+  .querySelectorAll(".reveal,.monitor")
+  .forEach(function(element){
+
+    revealObserver.observe(element);
+
+  });
+
+
+/* ---------- TESTIMONIAL SLIDER ---------- */
+
+const track=document.getElementById("testimonialTrack");
+const testimonials=document.querySelectorAll(".testimonial");
+
+let testimonialIndex=0;
+
+function updateTestimonials(){
+
+  track.style.transform=
+    "translateX(-"+(testimonialIndex*100)+"%)";
+
+}
+
+document
+  .getElementById("nextTestimonial")
+  .addEventListener("click",function(){
+
+    testimonialIndex++;
+
+    if(testimonialIndex>=testimonials.length){
+      testimonialIndex=0;
+    }
+
+    updateTestimonials();
+
+  });
+
+document
+  .getElementById("prevTestimonial")
+  .addEventListener("click",function(){
+
+    testimonialIndex--;
+
+    if(testimonialIndex<0){
+      testimonialIndex=testimonials.length-1;
+    }
+
+    updateTestimonials();
+
+  });
+
+let autoSlide=setInterval(function(){
+
+  testimonialIndex++;
+
+  if(testimonialIndex>=testimonials.length){
+    testimonialIndex=0;
+  }
+
+  updateTestimonials();
+
+},7000);
+
+
+/* ---------- MAGNETIC BUTTONS ---------- */
+
+const magneticElements=
+  document.querySelectorAll(".magnetic");
+
+magneticElements.forEach(function(element){
+
+  element.addEventListener("mousemove",function(e){
+
+    if(window.innerWidth<800)return;
+
+    const rect=element.getBoundingClientRect();
+
+    const x=e.clientX-rect.left-rect.width/2;
+    const y=e.clientY-rect.top-rect.height/2;
+
+    element.style.transform=
+      "translate("+(x*.12)+"px,"+(y*.12)+"px)";
+
+  });
+
+  element.addEventListener("mouseleave",function(){
+
+    element.style.transform="";
+
+  });
+
+});
+
+
+/* ---------- CUSTOM CURSOR ---------- */
+
+const cursorRing=document.getElementById("cursorRing");
+const cursorDot=document.getElementById("cursorDot");
+
+let mouseX=0;
+let mouseY=0;
+let ringX=0;
+let ringY=0;
+
+window.addEventListener("mousemove",function(e){
+
+  mouseX=e.clientX;
+  mouseY=e.clientY;
+
+  cursorDot.style.left=mouseX+"px";
+  cursorDot.style.top=mouseY+"px";
+
+});
+
+function cursorLoop(){
+
+  ringX+=(mouseX-ringX)*.12;
+  ringY+=(mouseY-ringY)*.12;
+
+  cursorRing.style.left=ringX+"px";
+  cursorRing.style.top=ringY+"px";
+
+  requestAnimationFrame(cursorLoop);
+
+}
+
+cursorLoop();
+
+document
+  .querySelectorAll("a,button,.service-tab,.faq-question")
+  .forEach(function(element){
+
+    element.addEventListener("mouseenter",function(){
+
+      cursorRing.classList.add("hover");
+
+    });
+
+    element.addEventListener("mouseleave",function(){
+
+      cursorRing.classList.remove("hover");
+
+    });
+
+  });
+
+
+/* ---------- PARTICLE ENGINE ---------- */
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+
+let particles=[];
+let particleWidth=window.innerWidth;
+let particleHeight=window.innerHeight;
+
+function resizeCanvas(){
+
+  particleWidth=window.innerWidth;
+  particleHeight=window.innerHeight;
+
+  const ratio=Math.min(window.devicePixelRatio||1,2);
+
+  canvas.width=particleWidth*ratio;
+  canvas.height=particleHeight*ratio;
+
+  canvas.style.width=particleWidth+"px";
+  canvas.style.height=particleHeight+"px";
+
+  ctx.setTransform(ratio,0,0,ratio,0,0);
+
+}
+
+function createParticles(){
+
+  particles=[];
+
+  const count=
+    window.innerWidth<700
+      ? 25
+      : 55;
+
+  for(let i=0;i<count;i++){
+
+    particles.push({
+
+      x:Math.random()*particleWidth,
+      y:Math.random()*particleHeight,
+
+      vx:(Math.random()-.5)*.18,
+      vy:(Math.random()-.5)*.18,
+
+      r:Math.random()*1.5+.4
+
+    });
+
+  }
+
+}
+
+function drawParticles(){
+
+  ctx.clearRect(
+    0,
+    0,
+    particleWidth,
+    particleHeight
+  );
+
+  for(let i=0;i<particles.length;i++){
+
+    const p=particles[i];
+
+    p.x+=p.vx;
+    p.y+=p.vy;
+
+    if(p.x<0)p.x=particleWidth;
+    if(p.x>particleWidth)p.x=0;
+
+    if(p.y<0)p.y=particleHeight;
+    if(p.y>particleHeight)p.y=0;
+
+    ctx.beginPath();
+
+    ctx.arc(
+      p.x,
+      p.y,
+      p.r,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fillStyle="rgba(216,180,107,.35)";
+    ctx.fill();
+
+    for(let j=i+1;j<particles.length;j++){
+
+      const q=particles[j];
+
+      const dx=p.x-q.x;
+      const dy=p.y-q.y;
+      const distance=Math.sqrt(dx*dx+dy*dy);
+
+      if(distance<120){
+
+        ctx.beginPath();
+
+        ctx.moveTo(p.x,p.y);
+        ctx.lineTo(q.x,q.y);
+
+        ctx.strokeStyle=
+          "rgba(216,180,107,"+
+          ((1-distance/120)*.08)+")";
+
+        ctx.lineWidth=.6;
+        ctx.stroke();
+
+      }
+
+    }
+
+  }
+
+  requestAnimationFrame(drawParticles);
+
+}
+
+window.addEventListener("resize",function(){
+
+  resizeCanvas();
+  createParticles();
+
+});
+
+resizeCanvas();
+createParticles();
+drawParticles();
+
+
+/* ---------- CONTACT FORM ---------- */
+
+const contactForm=
+  document.getElementById("contactForm");
+
+contactForm.addEventListener("submit",function(e){
+
+  e.preventDefault();
+
+  const name=
+    document.getElementById("name").value.trim();
+
+  const email=
+    document.getElementById("email").value.trim();
+
+  const company=
+    document.getElementById("company").value.trim();
+
+  const service=
+    document.getElementById("service").value;
+
+  const message=
+    document.getElementById("message").value.trim();
+
+  if(!name||!email||!message){
+
+    showToast(
+      "Missing information",
+      "Please complete the required fields."
+    );
+
+    return;
+
+  }
+
+  const subject=
+    encodeURIComponent(
+      "FINORA Website Inquiry"
+    );
+
+  const body=
+    encodeURIComponent(
+      "Name: "+name+
+      "\nEmail: "+email+
+      "\nCompany: "+company+
+      "\nService: "+service+
+      "\n\nMessage:\n"+message
+    );
+
+  showToast(
+    "Inquiry prepared",
+    "Opening your email application..."
+  );
+
+  setTimeout(function(){
+
+    window.location.href=
+      "mailto:info@finoraglobalservices.com"+
+      "?subject="+subject+
+      "&body="+body;
+
+  },600);
+
+});
+
+
+/* ---------- TOAST ---------- */
+
+const toast=document.getElementById("toast");
+const toastTitle=document.getElementById("toastTitle");
+const toastText=document.getElementById("toastText");
+
+let toastTimer;
+
+function showToast(title,text){
+
+  toastTitle.textContent=title;
+  toastText.textContent=text;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },3500);
+
+}
+
+
+/* ---------- YEAR ---------- */
+
+document.getElementById("year").textContent=
+  new Date().getFullYear();
+
+
+/* ---------- KEYBOARD SHORTCUT ---------- */
+
+document.addEventListener("keydown",function(e){
+
+  if(e.key==="/" &&
+     document.activeElement.tagName!=="INPUT" &&
+     document.activeElement.tagName!=="TEXTAREA"){
+
+    e.preventDefault();
+    openCommand();
+
+  }
+
+});
+
+
+/* ---------- SMOOTH ANCHORS ---------- */
+
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach(function(anchor){
+
+    anchor.addEventListener("click",function(e){
+
+      const id=this.getAttribute("href");
+
+      if(id==="#"||!document.querySelector(id)){
+        return;
+      }
+
+      e.preventDefault();
+
+      document
+        .querySelector(id)
+        .scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+    });
+
+  });
+
+</script>
+
+</body>
+</html>
