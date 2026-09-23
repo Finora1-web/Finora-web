@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FINORA GLOBAL SERVICES</title>
+<meta name="description" content="FINORA GLOBAL SERVICES — Accounting, financial reporting, tax support and business advisory.">
+
+<style>
+/* =========================================================
+   FINORA GLOBAL SERVICES
+   SINGLE-FILE PREMIUM WEBSITE
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#050609;
+  --bg2:#090b10;
+  --panel:#0d1016;
+  --panel2:#11151d;
+  --text:#f7f7f3;
+  --muted:#8d929d;
+  --gold:#d6b36a;
+  --gold2:#ffe1a0;
+  --green:#63e6a7;
+  --line:rgba(255,255,255,.09);
+  --white10:rgba(255,255,255,.10);
+  --white05:rgba(255,255,255,.05);
+  --max:1380px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+
+body::selection{
+  background:var(--gold);
+  color:#000;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+}
+
+/* =========================
+   GLOBAL BACKGROUND
+   ========================= */
+
+.noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1000;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+.ambient{
+  position:fixed;
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  pointer-events:none;
+  filter:blur(100px);
+  opacity:.12;
+  z-index:-2;
+  animation:ambientMove 14s ease-in-out infinite alternate;
+}
+
+.ambient.one{
+  background:#b98b38;
+  top:-250px;
+  right:-150px;
+}
+
+.ambient.two{
+  background:#304d72;
+  bottom:-300px;
+  left:-200px;
+  animation-delay:-5s;
+}
+
+@keyframes ambientMove{
+  from{transform:translate3d(-20px,-20px,0) scale(1)}
+  to{transform:translate3d(50px,40px,0) scale(1.18)}
+}
+
+/* =========================
+   LOADER
+   ========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#050609;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity .8s ease,visibility .8s ease;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-inner{
+  width:min(420px,80%);
+}
+
+.loader-brand{
+  font-family:"Manrope",sans-serif;
+  font-weight:800;
+  font-size:clamp(30px,6vw,58px);
+  letter-spacing:.12em;
+  text-align:center;
+}
+
+.loader-sub{
+  text-align:center;
+  color:var(--muted);
+  margin-top:10px;
+  font-size:11px;
+  letter-spacing:.35em;
+  text-transform:uppercase;
+}
+
+.loader-line{
+  height:1px;
+  background:#222731;
+  margin-top:35px;
+  overflow:hidden;
+}
+
+.loader-line span{
+  display:block;
+  width:0;
+  height:100%;
+  background:var(--gold);
+  animation:loading 1.8s ease forwards;
+}
+
+@keyframes loading{
+  to{width:100%}
+}
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:900;
+  padding:22px 30px;
+  transition:.4s ease;
+}
+
+.nav.scrolled{
+  padding:12px 30px;
+  background:rgba(5,6,9,.72);
+  backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav-inner{
+  max-width:var(--max);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-family:"Manrope",sans-serif;
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+
+.logo span{
+  color:var(--gold);
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:34px;
+}
+
+.nav-links a{
+  position:relative;
+  font-size:13px;
+  color:#b7bbc2;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:0;
+  height:1px;
+  background:var(--gold);
+  transition:.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-cta{
+  padding:12px 18px;
+  border:1px solid rgba(214,179,106,.45);
+  border-radius:100px;
+  font-size:12px;
+  color:white;
+  transition:.3s;
+}
+
+.nav-cta:hover{
+  background:var(--gold);
+  color:#080808;
+  box-shadow:0 0 30px rgba(214,179,106,.2);
+}
+
+.menu{
+  display:none;
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:transparent;
+  color:white;
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  padding:150px 30px 90px;
+}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  opacity:.22;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+
+.hero-orbit{
+  position:absolute;
+  width:760px;
+  height:760px;
+  border:1px solid rgba(214,179,106,.09);
+  border-radius:50%;
+  right:-260px;
+  top:50%;
+  transform:translateY(-50%);
+  animation:spin 35s linear infinite;
+}
+
+.hero-orbit::before,
+.hero-orbit::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(214,179,106,.08);
+}
+
+.hero-orbit::before{
+  inset:70px;
+}
+
+.hero-orbit::after{
+  inset:150px;
+}
+
+@keyframes spin{
+  to{transform:translateY(-50%) rotate(360deg)}
+}
+
+.hero-content{
+  max-width:var(--max);
+  width:100%;
+  margin:auto;
+  position:relative;
+  z-index:3;
+}
+
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.28em;
+  font-size:11px;
+  margin-bottom:30px;
+}
+
+.eyebrow::before{
+  content:"";
+  width:38px;
+  height:1px;
+  background:var(--gold);
+}
+
+.hero-title{
+  max-width:950px;
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(60px,9.3vw,145px);
+  line-height:.88;
+  letter-spacing:-.075em;
+  font-weight:800;
+}
+
+.hero-title .line{
+  display:block;
+  overflow:hidden;
+}
+
+.hero-title .word{
+  display:inline-block;
+  transform:translateY(110%);
+  opacity:0;
+  animation:titleIn 1s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.hero-title .line:nth-child(2) .word{
+  animation-delay:.12s;
+}
+
+.hero-title .line:nth-child(3) .word{
+  animation-delay:.24s;
+}
+
+@keyframes titleIn{
+  to{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
+.gold{
+  color:var(--gold);
+}
+
+.outline{
+  color:transparent;
+  -webkit-text-stroke:1px rgba(255,255,255,.7);
+}
+
+.hero-bottom{
+  margin-top:65px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:40px;
+}
+
+.hero-description{
+  max-width:450px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.8;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+}
+
+.btn{
+  position:relative;
+  overflow:hidden;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding:17px 24px;
+  border-radius:100px;
+  font-size:13px;
+  font-weight:600;
+  transition:.35s;
+}
+
+.btn-primary{
+  background:var(--gold);
+  color:#080808;
+}
+
+.btn-primary:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 50px rgba(214,179,106,.22);
+}
+
+.btn-secondary{
+  border:1px solid var(--line);
+  color:white;
+  background:rgba(255,255,255,.025);
+}
+
+.btn-secondary:hover{
+  border-color:rgba(214,179,106,.5);
+  transform:translateY(-4px);
+}
+
+.btn .arrow{
+  font-size:18px;
+  transition:.3s;
+}
+
+.btn:hover .arrow{
+  transform:translate(4px,-4px);
+}
+
+/* HERO DATA PANEL */
+
+.hero-panel{
+  position:absolute;
+  right:8%;
+  top:50%;
+  transform:translateY(-45%);
+  width:310px;
+  z-index:2;
+  padding:20px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:24px;
+  background:rgba(11,14,19,.68);
+  backdrop-filter:blur(24px);
+  box-shadow:0 40px 100px rgba(0,0,0,.45);
+}
+
+.panel-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:30px;
+}
+
+.panel-label{
+  font-size:10px;
+  color:#777e89;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+}
+
+.status{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--green);
+  font-size:10px;
+}
+
+.status i{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  50%{opacity:.3}
+}
+
+.chart-value{
+  font-family:"Manrope",sans-serif;
+  font-size:42px;
+  font-weight:700;
+}
+
+.chart-change{
+  color:var(--green);
+  font-size:11px;
+  margin-top:4px;
+}
+
+.chart{
+  width:100%;
+  height:125px;
+  margin-top:15px;
+  overflow:visible;
+}
+
+.chart-path{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-dasharray:800;
+  stroke-dashoffset:800;
+  animation:drawChart 2.5s 1s ease forwards;
+  filter:drop-shadow(0 0 7px rgba(214,179,106,.55));
+}
+
+@keyframes drawChart{
+  to{stroke-dashoffset:0}
+}
+
+.chart-dot{
+  fill:var(--gold2);
+  filter:drop-shadow(0 0 8px var(--gold));
+  animation:dotPulse 2s infinite;
+}
+
+@keyframes dotPulse{
+  50%{r:6}
+}
+
+.panel-footer{
+  border-top:1px solid var(--line);
+  padding-top:14px;
+  margin-top:10px;
+  display:flex;
+  justify-content:space-between;
+  color:#656b75;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+/* =========================
+   TICKER
+   ========================= */
+
+.ticker{
+  overflow:hidden;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:#080a0e;
+}
+
+.ticker-track{
+  display:flex;
+  width:max-content;
+  animation:ticker 28s linear infinite;
+}
+
+.ticker-item{
+  display:flex;
+  align-items:center;
+  gap:35px;
+  padding:23px 35px;
+  font-family:"Manrope",sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.2em;
+  white-space:nowrap;
+  color:#a7abb2;
+}
+
+.ticker-item b{
+  color:var(--gold);
+  font-size:7px;
+}
+
+@keyframes ticker{
+  to{transform:translateX(-50%)}
+}
+
+/* =========================
+   SECTIONS
+   ========================= */
+
+.section{
+  max-width:var(--max);
+  margin:auto;
+  padding:150px 30px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:50px;
+  margin-bottom:70px;
+}
+
+.section-number{
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:.25em;
+  margin-bottom:18px;
+}
+
+.section-title{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(40px,6vw,82px);
+  line-height:.95;
+  letter-spacing:-.06em;
+  max-width:750px;
+}
+
+.section-description{
+  max-width:390px;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+}
+
+/* =========================
+   SERVICES
+   ========================= */
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.service{
+  position:relative;
+  min-height:300px;
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:25px;
+  background:
+    radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(214,179,106,.09),transparent 35%),
+    linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
+  overflow:hidden;
+  transition:.5s cubic-bezier(.16,1,.3,1);
+}
+
+.service:hover{
+  transform:translateY(-8px);
+  border-color:rgba(214,179,106,.28);
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+}
+
+.service::after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  right:-80px;
+  bottom:-80px;
+  border-radius:50%;
+  background:rgba(214,179,106,.08);
+  filter:blur(20px);
+  transition:.5s;
+}
+
+.service:hover::after{
+  transform:scale(2);
+}
+
+.service-icon{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(214,179,106,.25);
+  border-radius:14px;
+  color:var(--gold);
+  margin-bottom:70px;
+  font-size:20px;
+}
+
+.service h3{
+  font-family:"Manrope",sans-serif;
+  font-size:23px;
+  margin-bottom:13px;
+}
+
+.service p{
+  color:var(--muted);
+  line-height:1.7;
+  font-size:13px;
+  max-width:330px;
+}
+
+.service-index{
+  position:absolute;
+  top:30px;
+  right:30px;
+  color:#444a54;
+  font-size:11px;
+  letter-spacing:.15em;
+}
+
+/* =========================
+   ABOUT / DASHBOARD
+   ========================= */
+
+.about-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:100px;
+  align-items:center;
+}
+
+.dashboard{
+  position:relative;
+  padding:24px;
+  border:1px solid var(--line);
+  border-radius:30px;
+  background:linear-gradient(145deg,#0e1117,#080a0e);
+  box-shadow:0 50px 100px rgba(0,0,0,.4);
+}
+
+.dash-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:35px;
+}
+
+.dash-title{
+  font-family:"Manrope",sans-serif;
+  font-weight:700;
+}
+
+.dash-small{
+  color:#6e7580;
+  font-size:10px;
+}
+
+.dash-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:15px;
+}
+
+.dash-card{
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:rgba(255,255,255,.025);
+}
+
+.dash-card span{
+  display:block;
+  color:#737984;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  margin-bottom:9px;
+}
+
+.dash-card strong{
+  font-family:"Manrope",sans-serif;
+  font-size:25px;
+}
+
+.dash-chart{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:15px;
+  height:210px;
+  background:rgba(255,255,255,.018);
+}
+
+.dash-chart svg{
+  width:100%;
+  height:100%;
+}
+
+.dash-line{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:600;
+  stroke-dashoffset:600;
+}
+
+.in-view .dash-line{
+  animation:dashDraw 2s ease forwards;
+}
+
+@keyframes dashDraw{
+  to{stroke-dashoffset:0}
+}
+
+.about-copy h3{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(30px,4vw,52px);
+  line-height:1.02;
+  letter-spacing:-.045em;
+  margin-bottom:25px;
+}
+
+.about-copy>p{
+  color:var(--muted);
+  line-height:1.85;
+  font-size:15px;
+  margin-bottom:35px;
+}
+
+.checks{
+  display:grid;
+  gap:15px;
+}
+
+.check{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding-bottom:15px;
+  border-bottom:1px solid var(--line);
+}
+
+.check-mark{
+  width:24px;
+  height:24px;
+  border:1px solid rgba(214,179,106,.4);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  font-size:11px;
+}
+
+.check span{
+  color:#c8cbd0;
+  font-size:13px;
+}
+
+/* =========================
+   STATS
+   ========================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.stat{
+  padding:55px 25px;
+  border-right:1px solid var(--line);
+}
+
+.stat:last-child{
+  border-right:0;
+}
+
+.stat-number{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(35px,4vw,60px);
+  font-weight:700;
+  letter-spacing:-.05em;
+  margin-bottom:10px;
+}
+
+.stat-label{
+  color:#737984;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+}
+
+/* =========================
+   PROCESS
+   ========================= */
+
+.process{
+  position:relative;
+}
+
+.process-line{
+  position:absolute;
+  left:0;
+  right:0;
+  top:67px;
+  height:1px;
+  background:var(--line);
+}
+
+.process-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.step{
+  position:relative;
+}
+
+.step-circle{
+  width:54px;
+  height:54px;
+  border:1px solid rgba(214,179,106,.45);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--bg);
+  color:var(--gold);
+  margin-bottom:30px;
+  position:relative;
+  z-index:2;
+  transition:.4s;
+}
+
+.step:hover .step-circle{
+  background:var(--gold);
+  color:#050609;
+  box-shadow:0 0 35px rgba(214,179,106,.2);
+}
+
+.step h3{
+  font-family:"Manrope",sans-serif;
+  margin-bottom:12px;
+  font-size:20px;
+}
+
+.step p{
+  color:var(--muted);
+  line-height:1.7;
+  font-size:13px;
+  max-width:230px;
+}
+
+/* =========================
+   BIG CTA
+   ========================= */
+
+.cta{
+  margin-top:80px;
+  padding:100px 50px;
+  border:1px solid rgba(214,179,106,.22);
+  border-radius:35px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 100%,rgba(214,179,106,.15),transparent 45%),
+    linear-gradient(145deg,#10131a,#080a0e);
+}
+
+.cta::before{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  background:conic-gradient(from 0deg,transparent,rgba(214,179,106,.09),transparent 25%);
+  animation:ctaSpin 12s linear infinite;
+}
+
+@keyframes ctaSpin{
+  to{transform:rotate(360deg)}
+}
+
+.cta-content{
+  position:relative;
+  z-index:2;
+}
+
+.cta small{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:.3em;
+  font-size:10px;
+}
+
+.cta h2{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(45px,7vw,100px);
+  line-height:.9;
+  letter-spacing:-.07em;
+  margin:25px auto 35px;
+  max-width:900px;
+}
+
+/* =========================
+   CONTACT
+   ========================= */
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:100px;
+  align-items:start;
+}
+
+.contact-info h2{
+  font-family:"Manrope",sans-serif;
+  font-size:clamp(38px,5vw,65px);
+  letter-spacing:-.06em;
+  line-height:.95;
+  margin-bottom:25px;
+}
+
+.contact-info>p{
+  color:var(--muted);
+  line-height:1.8;
+  max-width:400px;
+}
+
+.contact-detail{
+  margin-top:45px;
+  display:grid;
+  gap:20px;
+}
+
+.detail-label{
+  color:#686e78;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  margin-bottom:5px;
+}
+
+.detail-value{
+  font-size:14px;
+}
+
+.form{
+  display:grid;
+  gap:14px;
+}
+
+.field{
+  position:relative;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  background:#0b0e13;
+  border:1px solid var(--line);
+  border-radius:14px;
+  outline:none;
+  color:white;
+  padding:19px;
+  transition:.3s;
+}
+
+.field textarea{
+  height:160px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color:rgba(214,179,106,.55);
+  box-shadow:0 0 30px rgba(214,179,106,.05);
+}
+
+.field label{
+  position:absolute;
+  left:19px;
+  top:19px;
+  color:#656b75;
+  font-size:12px;
+  pointer-events:none;
+  transition:.3s;
+  background:#0b0e13;
+  padding:0 4px;
+}
+
+.field input:focus+label,
+.field input:not(:placeholder-shown)+label,
+.field textarea:focus+label,
+.field textarea:not(:placeholder-shown)+label{
+  top:-7px;
+  font-size:9px;
+  color:var(--gold);
+}
+
+.form button{
+  width:max-content;
+  margin-top:8px;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:35px 30px;
+}
+
+.footer-inner{
+  max-width:var(--max);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+}
+
+.footer-logo{
+  font-family:"Manrope",sans-serif;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+
+.footer-logo span{
+  color:var(--gold);
+}
+
+.footer-copy{
+  color:#555b65;
+  font-size:11px;
+}
+
+.back-top{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+  color:var(--gold);
+  transition:.3s;
+}
+
+.back-top:hover{
+  background:var(--gold);
+  color:#000;
+}
+
+/* =========================
+   REVEAL ANIMATION
+   ========================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(45px);
+  transition:
+    opacity .9s cubic-bezier(.16,1,.3,1),
+    transform .9s cubic-bezier(.16,1,.3,1);
+}
+
+.reveal.in-view{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* =========================
+   CURSOR
+   ========================= */
+
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border:1px solid rgba(214,179,106,.75);
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:
+    width .25s,
+    height .25s,
+    background .25s,
+    border .25s;
+  mix-blend-mode:difference;
+}
+
+.cursor-dot{
+  position:fixed;
+  width:4px;
+  height:4px;
+  background:white;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+}
+
+.cursor.big{
+  width:60px;
+  height:60px;
+  background:rgba(214,179,106,.08);
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media(max-width:1100px){
+
+  .hero-panel{
+    opacity:.35;
+    right:-80px;
+  }
+
+  .hero-title{
+    max-width:750px;
+  }
+
+  .services{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .about-layout{
+    gap:50px;
+  }
+}
+
+@media(max-width:800px){
+
+  .nav{
+    padding:16px 18px;
+  }
+
+  .nav.scrolled{
+    padding:10px 18px;
+  }
+
+  .nav-links{
+    position:fixed;
+    inset:70px 15px auto;
+    padding:25px;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:rgba(8,10,14,.95);
+    backdrop-filter:blur(25px);
+    flex-direction:column;
+    align-items:flex-start;
+    transform:translateY(-20px);
+    opacity:0;
+    visibility:hidden;
+    transition:.35s;
+  }
+
+  .nav-links.open{
+    transform:translateY(0);
+    opacity:1;
+    visibility:visible;
+  }
+
+  .nav-links a{
+    font-size:16px;
+  }
+
+  .nav-cta{
+    display:none;
+  }
+
+  .menu{
+    display:grid;
+    place-items:center;
+  }
+
+  .hero{
+    padding:140px 20px 80px;
+  }
+
+  .hero-title{
+    font-size:clamp(54px,15vw,90px);
+  }
+
+  .hero-panel{
+    display:none;
+  }
+
+  .hero-orbit{
+    width:500px;
+    height:500px;
+    right:-300px;
+    opacity:.45;
+  }
+
+  .hero-bottom{
+    margin-top:45px;
+    display:block;
+  }
+
+  .hero-buttons{
+    margin-top:30px;
+    flex-wrap:wrap;
+  }
+
+  .section{
+    padding:100px 20px;
+  }
+
+  .section-head{
+    display:block;
+    margin-bottom:45px;
+  }
+
+  .section-description{
+    margin-top:25px;
+  }
+
+  .services{
+    grid-template-columns:1fr;
+  }
+
+  .service{
+    min-height:260px;
+  }
+
+  .about-layout{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat{
+    border-bottom:1px solid var(--line);
+  }
+
+  .stat:nth-child(2){
+    border-right:0;
+  }
+
+  .process-line{
+    display:none;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr 1fr;
+    gap:40px 20px;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+    gap:55px;
+  }
+
+  .cta{
+    padding:75px 20px;
+  }
+
+  .footer-inner{
+    flex-wrap:wrap;
+  }
+
+  .cursor,
+  .cursor-dot{
+    display:none;
+  }
+}
+
+@media(max-width:500px){
+
+  .logo{
+    font-size:17px;
+  }
+
+  .hero-description{
+    font-size:14px;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .hero-buttons{
+    display:grid;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .stat{
+    border-right:0;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr;
+  }
+
+  .dash-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cta h2{
+    font-size:48px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
+    transition-duration:.001ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="noise"></div>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-brand">FINORA</div>
+    <div class="loader-sub">Global Services</div>
+    <div class="loader-line"><span></span></div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+
+    <a href="#home" class="logo">
+      FINORA<span>.</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <a href="#contact" class="nav-cta">START A CONVERSATION ↗</a>
+
+    <button class="menu" id="menu">☰</button>
+
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="home">
+
+  <div class="hero-grid"></div>
+  <div class="hero-orbit"></div>
+
+  <div class="hero-content">
+
+    <div class="eyebrow">
+      GLOBAL FINANCIAL SERVICES
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line">
+        <span class="word">FINANCE</span>
+      </span>
+
+      <span class="line">
+        <span class="word gold">WITH</span>
+        <span class="word"> CLARITY.</span>
+      </span>
+
+      <span class="line">
+        <span class="word outline">MOVE</span>
+        <span class="word"> FORWARD.</span>
+      </span>
+    </h1>
+
+    <div class="hero-bottom">
+
+      <p class="hero-description">
+        Clear numbers. Smarter decisions. A modern approach to accounting,
+        reporting and financial support designed around your business.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#services" class="btn btn-primary">
+          Explore Services
+          <span class="arrow">↗</span>
+        </a>
+
+        <a href="#contact" class="btn btn-secondary">
+          Talk to FINORA
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FLOATING FINANCIAL PANEL -->
+  <div class="hero-panel">
+
+    <div class="panel-top">
+      <span class="panel-label">Financial Overview</span>
+
+      <span class="status">
+        <i></i>
+        ACTIVE
+      </span>
+    </div>
+
+    <div class="chart-value">+18.4%</div>
+    <div class="chart-change">↑ Financial visibility</div>
+
+    <svg class="chart" viewBox="0 0 300 125" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="chartGlow" x1="0" x2="1">
+          <stop offset="0%" stop-color="#9d7937"/>
+          <stop offset="100%" stop-color="#ffe1a0"/>
+        </linearGradient>
+      </defs>
+
+      <path
+        class="chart-path"
+        d="M0 105 C25 100,30 80,55 86 S82 65,105 75 S130 35,150 50 S180 68,200 42 S225 55,245 25 S270 35,300 5"
+        stroke="url(#chartGlow)"
+      />
+
+      <circle class="chart-dot" cx="300" cy="5" r="4"/>
+    </svg>
+
+    <div class="panel-footer">
+      <span>Clarity</span>
+      <span>Strategy</span>
+      <span>Growth</span>
+    </div>
+
+  </div>
+
+</header>
+
+<!-- MOVING TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+
+    <div class="ticker-item">ACCOUNTING <b>◆</b></div>
+    <div class="ticker-item">FINANCIAL REPORTING <b>◆</b></div>
+    <div class="ticker-item">TAX SUPPORT <b>◆</b></div>
+    <div class="ticker-item">BUSINESS SUPPORT <b>◆</b></div>
+    <div class="ticker-item">FINANCIAL ADVISORY <b>◆</b></div>
+    <div class="ticker-item">BUSINESS INSIGHTS <b>◆</b></div>
+
+    <div class="ticker-item">ACCOUNTING <b>◆</b></div>
+    <div class="ticker-item">FINANCIAL REPORTING <b>◆</b></div>
+    <div class="ticker-item">TAX SUPPORT <b>◆</b></div>
+    <div class="ticker-item">BUSINESS SUPPORT <b>◆</b></div>
+    <div class="ticker-item">FINANCIAL ADVISORY <b>◆</b></div>
+    <div class="ticker-item">BUSINESS INSIGHTS <b>◆</b></div>
+
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+
+  <div class="section-head reveal">
+
+    <div>
+      <div class="section-number">01 / SERVICES</div>
+
+      <h2 class="section-title">
+        Numbers that<br>
+        <span class="gold">make sense.</span>
+      </h2>
+    </div>
+
+    <p class="section-description">
+      Financial support should make your business easier to understand,
+      manage and move forward.
+    </p>
+
+  </div>
+
+  <div class="services">
+
+    <article class="service reveal">
+      <span class="service-index">01</span>
+      <div class="service-icon">▦</div>
+      <h3>Accounting & Bookkeeping</h3>
+      <p>
+        Organized financial records that give your business a reliable
+        foundation for everyday decisions.
+      </p>
+    </article>
+
+    <article class="service reveal">
+      <span class="service-index">02</span>
+      <div class="service-icon">⌁</div>
+      <h3>Financial Reporting</h3>
+      <p>
+        Clear financial information presented in a way that helps you
+        understand where your business stands.
+      </p>
+    </article>
+
+    <article class="service reveal">
+      <span class="service-index">03</span>
+      <div class="service-icon">◇</div>
+      <h3>Tax Support</h3>
+      <p>
+        Practical support for organizing financial information and preparing
+        for tax-related requirements.
+      </p>
+    </article>
+
+    <article class="service reveal">
+      <span class="service-index">04</span>
+      <div class="service-icon">↗</div>
+      <h3>Financial Advisory</h3>
+      <p>
+        Financial perspective designed to help you evaluate opportunities,
+        challenges and next steps.
+      </p>
+    </article>
+
+    <article class="service reveal">
+      <span class="service-index">05</span>
+      <div class="service-icon">◎</div>
+      <h3>Business Support</h3>
+      <p>
+        Practical financial assistance that helps bring structure and clarity
+        to your business operations.
+      </p>
+    </article>
+
+    <article class="service reveal">
+      <span class="service-index">06</span>
+      <div class="service-icon">◌</div>
+      <h3>Business Insights</h3>
+      <p>
+        Turn financial information into useful insights for planning,
+        monitoring and informed decision-making.
+      </p>
+    </article>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+
+  <div class="section-head reveal">
+
+    <div>
+      <div class="section-number">02 / FINORA</div>
+
+      <h2 class="section-title">
+        More than<br>
+        <span class="outline">the numbers.</span>
+      </h2>
+    </div>
+
+    <p class="section-description">
+      We believe financial information should not feel complicated.
+      It should give you confidence about what comes next.
+    </p>
+
+  </div>
+
+  <div class="about-layout">
+
+    <div class="dashboard reveal">
+
+      <div class="dash-top">
+        <span class="dash-title">Business Overview</span>
+        <span class="dash-small">FINORA / LIVE VIEW</span>
+      </div>
+
+      <div class="dash-grid">
+
+        <div class="dash-card">
+          <span>Revenue</span>
+          <strong>↗</strong>
+        </div>
+
+        <div class="dash-card">
+          <span>Planning</span>
+          <strong>◎</strong>
+        </div>
+
+      </div>
+
+      <div class="dash-chart">
+
+        <svg viewBox="0 0 600 220" preserveAspectRatio="none">
+
+          <defs>
+            <linearGradient id="fillGold" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#d6b36a" stop-opacity=".25"/>
+              <stop offset="1" stop-color="#d6b36a" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+
+          <path
+            d="M0 190 C70 175,80 130,145 150 S205 95,270 115 S340 70,395 100 S470 35,520 55 S570 30,600 15 L600 220 L0 220 Z"
+            fill="url(#fillGold)"
+          />
+
+          <path
+            class="dash-line"
+            d="M0 190 C70 175,80 130,145 150 S205 95,270 115 S340 70,395 100 S470 35,520 55 S570 30,600 15"
+          />
+
+        </svg>
+
+      </div>
+
+    </div>
+
+    <div class="about-copy reveal">
+
+      <h3>
+        Clear financial thinking for businesses that want to move forward.
+      </h3>
+
+      <p>
+        FINORA GLOBAL SERVICES brings together accounting, reporting,
+        financial support and business insight in one clear approach.
+        The goal is simple: make financial information easier to understand
+        and easier to use.
+      </p>
+
+      <div class="checks">
+
+        <div class="check">
+          <div class="check-mark">✓</div>
+          <span>Clear and organized financial information</span>
+        </div>
+
+        <div class="check">
+          <div class="check-mark">✓</div>
+          <span>Practical support built around your needs</span>
+        </div>
+
+        <div class="check">
+          <div class="check-mark">✓</div>
+          <span>Focused on informed business decisions</span>
+        </div>
+
+        <div class="check">
+          <div class="check-mark">✓</div>
+          <span>Modern, accessible financial communication</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STATS -->
+<section class="section" style="padding-top:0;padding-bottom:0;">
+
+  <div class="stats reveal">
+
+    <div class="stat">
+      <div class="stat-number">01</div>
+      <div class="stat-label">Clear approach</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">360°</div>
+      <div class="stat-label">Business perspective</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Digital accessibility</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Room to grow</div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- APPROACH -->
+<section class="section" id="approach">
+
+  <div class="section-head reveal">
+
+    <div>
+      <div class="section-number">03 / APPROACH</div>
+
+      <h2 class="section-title">
+        Simple process.<br>
+        <span class="gold">Sharper direction.</span>
+      </h2>
+    </div>
+
+    <p class="section-description">
+      A straightforward process designed to turn financial information
+      into practical understanding.
+    </p>
+
+  </div>
+
+  <div class="process">
+
+    <div class="process-line"></div>
+
+    <div class="process-grid">
+
+      <div class="step reveal">
+        <div class="step-circle">01</div>
+        <h3>Understand</h3>
+        <p>
+          Start with your business, goals and financial situation.
+        </p>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-circle">02</div>
+        <h3>Organize</h3>
+        <p>
+          Bring the relevant financial information together clearly.
+        </p>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-circle">03</div>
+        <h3>Analyze</h3>
+        <p>
+          Identify useful patterns, information and areas to consider.
+        </p>
+      </div>
+
+      <div class="step reveal">
+        <div class="step-circle">04</div>
+        <h3>Move Forward</h3>
+        <p>
+          Use clearer information to plan your next business step.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="cta reveal">
+
+    <div class="cta-content">
+
+      <small>Ready when you are</small>
+
+      <h2>
+        YOUR BUSINESS.<br>
+        <span class="gold">YOUR NUMBERS.</span>
+      </h2>
+
+      <a href="#contact" class="btn btn-primary">
+        Start a Conversation
+        <span class="arrow">↗</span>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+
+  <div class="contact-grid">
+
+    <div class="contact-info reveal">
+
+      <div class="section-number">04 / CONTACT</div>
+
+      <h2>
+        Let's talk<br>
+        <span class="gold">numbers.</span>
+      </h2>
+
+      <p>
+        Have a question or want to discuss your business requirements?
+        Send us a message and start the conversation.
+      </p>
+
+      <div class="contact-detail">
+
+        <div>
+          <div class="detail-label">Email</div>
+          <div class="detail-value">info@finoraglobalservices.com</div>
+        </div>
+
+        <div>
+          <div class="detail-label">Location</div>
+          <div class="detail-value">United Arab Emirates</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <form class="form reveal" id="contactForm">
+
+      <div class="field">
+        <input type="text" id="name" placeholder=" " required>
+        <label for="name">Your name</label>
+      </div>
+
+      <div class="field">
+        <input type="email" id="email" placeholder=" " required>
+        <label for="email">Your email</label>
+      </div>
+
+      <div class="field">
+        <input type="text" id="company" placeholder=" ">
+        <label for="company">Company</label>
+      </div>
+
+      <div class="field">
+        <textarea id="message" placeholder=" " required></textarea>
+        <label for="message">How can we help?</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Send Inquiry
+        <span class="arrow">↗</span>
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-inner">
+
+    <div class="footer-logo">
+      FINORA<span>.</span>
+    </div>
+
+    <div class="footer-copy">
+      © <span id="year"></span> FINORA GLOBAL SERVICES. All rights reserved.
+    </div>
+
+    <a href="#home" class="back-top">↑</a>
+
+  </div>
+
+</footer>
+
+<script>
+/* =========================================================
+   FINORA JAVASCRIPT
+   ========================================================= */
+
+const loader = document.getElementById("loader");
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    loader.classList.add("hide");
+  }, 1900);
+});
+
+
+/* NAVIGATION */
+
+const nav = document.getElementById("nav");
+
+window.addEventListener("scroll", () => {
+
+  if(window.scrollY > 40){
+    nav.classList.add("scrolled");
+  }else{
+    nav.classList.remove("scrolled");
+  }
+
+});
+
+
+/* MOBILE MENU */
+
+const menu = document.getElementById("menu");
+const navLinks = document.getElementById("navLinks");
+
+menu.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+  });
+});
+
+
+/* REVEAL ON SCROLL */
+
+const revealObserver = new IntersectionObserver(
+  entries => {
+
+    entries.forEach(entry => {
+
+      if(entry.isIntersecting){
+
+        entry.target.classList.add("in-view");
+
+        if(entry.target.classList.contains("dashboard")){
+          entry.target.classList.add("in-view");
+        }
+
+      }
+
+    });
+
+  },
+  {
+    threshold:.12
+  }
+);
+
+document.querySelectorAll(".reveal").forEach(el => {
+  revealObserver.observe(el);
+});
+
+
+/* SERVICE CARD MOUSE LIGHT */
+
+document.querySelectorAll(".service").forEach(card => {
+
+  card.addEventListener("mousemove", event => {
+
+    const rect = card.getBoundingClientRect();
+
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    card.style.setProperty("--mx", x + "%");
+    card.style.setProperty("--my", y + "%");
+
+  });
+
+});
+
+
+/* HERO MOUSE PARALLAX */
+
+const hero = document.querySelector(".hero");
+const heroOrbit = document.querySelector(".hero-orbit");
+
+window.addEventListener("mousemove", event => {
+
+  if(window.innerWidth < 900) return;
+
+  const x = (event.clientX / window.innerWidth - .5);
+  const y = (event.clientY / window.innerHeight - .5);
+
+  heroOrbit.style.marginLeft = (x * 25) + "px";
+  heroOrbit.style.marginTop = (y * 25) + "px";
+
+});
+
+
+/* CUSTOM CURSOR */
+
+const cursor = document.getElementById("cursor");
+const cursorDot = document.getElementById("cursorDot");
+
+let mouseX = 0;
+let mouseY = 0;
+let currentX = 0;
+let currentY = 0;
+
+window.addEventListener("mousemove", event => {
+
+  mouseX = event.clientX;
+  mouseY = event.clientY;
+
+  cursorDot.style.left = mouseX + "px";
+  cursorDot.style.top = mouseY + "px";
+
+});
+
+function animateCursor(){
+
+  currentX += (mouseX - currentX) * .13;
+  currentY += (mouseY - currentY) * .13;
+
+  cursor.style.left = currentX + "px";
+  cursor.style.top = currentY + "px";
+
+  requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+
+document.querySelectorAll("a,button,.service").forEach(el => {
+
+  el.addEventListener("mouseenter", () => {
+    cursor.classList.add("big");
+  });
+
+  el.addEventListener("mouseleave", () => {
+    cursor.classList.remove("big");
+  });
+
+});
+
+
+/* CONTACT FORM */
+
+document.getElementById("contactForm").addEventListener("submit", function(event){
+
+  event.preventDefault();
+
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const company = document.getElementById("company").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  const subject =
+    encodeURIComponent("FINORA Website Inquiry");
+
+  const body =
+    encodeURIComponent(
+      "Name: " + name +
+      "\nEmail: " + email +
+      "\nCompany: " + company +
+      "\n\nMessage:\n" + message
+    );
+
+  window.location.href =
+    "mailto:info@finoraglobalservices.com?subject=" +
+    subject +
+    "&body=" +
+    body;
+
+});
+
+
+/* YEAR */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+
+/* SMOOTH ANCHOR FALLBACK */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+  anchor.addEventListener("click", function(event){
+
+    const target = document.querySelector(this.getAttribute("href"));
+
+    if(target){
+
+      event.preventDefault();
+
+      target.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+    }
+
+  });
+
+});
+</script>
+
+</body>
+</html>
