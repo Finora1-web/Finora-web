@@ -1,0 +1,3319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>FINORA GLOBAL SERVICES | Finance With Clarity</title>
+
+<meta name="description" content="FINORA GLOBAL SERVICES — accounting, financial reporting, tax support, business support and financial advisory.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#050607;
+  --bg2:#090b0f;
+  --panel:#0c0f13;
+  --panel2:#10141a;
+  --gold:#d6ad58;
+  --gold2:#f4d58a;
+  --text:#f5f2e9;
+  --muted:#92969d;
+  --line:rgba(255,255,255,.09);
+  --goldline:rgba(214,173,88,.22);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+  background:var(--bg);
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Manrope,sans-serif;
+  overflow-x:hidden;
+}
+
+body.intro-active{
+  overflow:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+button{
+  border:0;
+}
+
+/* =========================
+   CINEMATIC INTRO
+========================= */
+
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:#030405;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  cursor:pointer;
+  transition:
+    opacity 1.1s var(--ease),
+    visibility 1.1s var(--ease),
+    transform 1.1s var(--ease);
+}
+
+#intro.hide{
+  opacity:0;
+  visibility:hidden;
+  transform:scale(1.035);
+  pointer-events:none;
+}
+
+.intro-grid{
+  position:absolute;
+  inset:-20%;
+  background-image:
+    linear-gradient(rgba(214,173,88,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(214,173,88,.055) 1px,transparent 1px);
+  background-size:70px 70px;
+  transform:perspective(700px) rotateX(58deg) scale(1.5);
+  transform-origin:center bottom;
+  opacity:0;
+  animation:introGrid 8s ease forwards;
+}
+
+@keyframes introGrid{
+  0%,20%{opacity:0;transform:perspective(700px) rotateX(58deg) scale(1.7) translateY(40px)}
+  35%{opacity:.5}
+  80%{opacity:.25}
+  100%{opacity:0;transform:perspective(700px) rotateX(58deg) scale(1.2)}
+}
+
+.intro-glow{
+  position:absolute;
+  width:600px;
+  height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(214,173,88,.17),rgba(214,173,88,.04) 35%,transparent 70%);
+  filter:blur(20px);
+  opacity:0;
+  animation:introGlow 8s ease forwards;
+}
+
+@keyframes introGlow{
+  0%,30%{opacity:0;transform:scale(.3)}
+  48%{opacity:1;transform:scale(1)}
+  75%{opacity:.65}
+  100%{opacity:0;transform:scale(1.5)}
+}
+
+.intro-particles{
+  position:absolute;
+  inset:0;
+}
+
+.ip{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:var(--gold2);
+  border-radius:50%;
+  box-shadow:0 0 10px var(--gold);
+  opacity:0;
+  animation:particleFloat 5s ease-in-out infinite;
+}
+
+.ip:nth-child(1){left:9%;top:25%;animation-delay:.3s}
+.ip:nth-child(2){left:17%;top:68%;animation-delay:1.2s}
+.ip:nth-child(3){left:28%;top:19%;animation-delay:.8s}
+.ip:nth-child(4){left:38%;top:78%;animation-delay:1.8s}
+.ip:nth-child(5){left:49%;top:13%;animation-delay:.2s}
+.ip:nth-child(6){left:61%;top:73%;animation-delay:1.4s}
+.ip:nth-child(7){left:73%;top:24%;animation-delay:.6s}
+.ip:nth-child(8){left:84%;top:63%;animation-delay:1.1s}
+.ip:nth-child(9){left:91%;top:35%;animation-delay:2s}
+.ip:nth-child(10){left:14%;top:43%;animation-delay:2.5s}
+.ip:nth-child(11){left:78%;top:48%;animation-delay:1.7s}
+.ip:nth-child(12){left:55%;top:86%;animation-delay:.9s}
+
+@keyframes particleFloat{
+  0%{opacity:0;transform:translateY(30px) scale(.3)}
+  30%{opacity:.8}
+  70%{opacity:.7}
+  100%{opacity:0;transform:translateY(-80px) scale(1.5)}
+}
+
+.intro-lines{
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  animation:introLines 8s ease forwards;
+}
+
+.intro-line{
+  position:absolute;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  box-shadow:0 0 18px rgba(214,173,88,.55);
+  transform:scaleX(0);
+}
+
+.line1{
+  width:55%;
+  top:38%;
+  left:-5%;
+  animation:drawLine 1.7s 1.2s var(--ease) forwards;
+}
+
+.line2{
+  width:65%;
+  top:61%;
+  right:-8%;
+  animation:drawLine 1.7s 1.8s var(--ease) forwards;
+}
+
+.line3{
+  width:35%;
+  top:28%;
+  right:3%;
+  animation:drawLine 1.3s 2.3s var(--ease) forwards;
+}
+
+@keyframes introLines{
+  0%,10%{opacity:0}
+  18%,75%{opacity:1}
+  100%{opacity:0}
+}
+
+@keyframes drawLine{
+  to{transform:scaleX(1)}
+}
+
+.intro-chart{
+  position:absolute;
+  width:min(760px,80vw);
+  height:300px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+  animation:chartAppear 8s ease forwards;
+}
+
+@keyframes chartAppear{
+  0%,30%{opacity:0}
+  40%{opacity:.9}
+  73%{opacity:.65}
+  100%{opacity:0}
+}
+
+.chart-path{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-dasharray:1200;
+  stroke-dashoffset:1200;
+  filter:drop-shadow(0 0 8px rgba(214,173,88,.65));
+  animation:drawChart 2.8s 2.1s var(--ease) forwards;
+}
+
+@keyframes drawChart{
+  to{stroke-dashoffset:0}
+}
+
+.chart-node{
+  fill:var(--gold2);
+  opacity:0;
+  filter:drop-shadow(0 0 9px var(--gold));
+  animation:nodeAppear .5s forwards;
+}
+
+.chart-node:nth-of-type(1){animation-delay:3.0s}
+.chart-node:nth-of-type(2){animation-delay:3.35s}
+.chart-node:nth-of-type(3){animation-delay:3.7s}
+.chart-node:nth-of-type(4){animation-delay:4.05s}
+.chart-node:nth-of-type(5){animation-delay:4.4s}
+
+@keyframes nodeAppear{
+  to{opacity:1}
+}
+
+.intro-brand{
+  position:relative;
+  z-index:5;
+  text-align:center;
+  opacity:0;
+  transform:scale(.82);
+  animation:brandReveal 8s var(--ease) forwards;
+}
+
+@keyframes brandReveal{
+  0%,43%{
+    opacity:0;
+    transform:scale(.82);
+    filter:blur(15px);
+  }
+  55%{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+  79%{
+    opacity:1;
+    transform:scale(1);
+  }
+  100%{
+    opacity:0;
+    transform:scale(1.07);
+    filter:blur(5px);
+  }
+}
+
+.intro-brand h1{
+  font-size:clamp(48px,10vw,130px);
+  line-height:.9;
+  letter-spacing:.16em;
+  font-weight:800;
+  margin-left:.16em;
+  color:#f8f3e7;
+  text-shadow:
+    0 0 20px rgba(214,173,88,.18),
+    0 0 70px rgba(214,173,88,.12);
+}
+
+.intro-brand h1 span{
+  color:var(--gold2);
+}
+
+.intro-sub{
+  margin-top:22px;
+  font-family:"DM Mono",monospace;
+  font-size:clamp(9px,1.4vw,14px);
+  letter-spacing:.48em;
+  margin-left:.48em;
+  color:rgba(244,213,138,.85);
+}
+
+.intro-tag{
+  margin-top:28px;
+  font-size:10px;
+  letter-spacing:.32em;
+  color:#73777d;
+  text-transform:uppercase;
+}
+
+.intro-sweep{
+  position:absolute;
+  z-index:8;
+  width:35%;
+  height:160%;
+  top:-30%;
+  left:-50%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(244,213,138,.05),
+    rgba(244,213,138,.55),
+    rgba(255,255,255,.2),
+    transparent
+  );
+  transform:skewX(-18deg);
+  filter:blur(5px);
+  opacity:0;
+  animation:sweep 1.4s 5.8s ease forwards;
+}
+
+@keyframes sweep{
+  0%{left:-50%;opacity:0}
+  15%{opacity:1}
+  100%{left:120%;opacity:0}
+}
+
+.intro-skip{
+  position:absolute;
+  z-index:20;
+  right:28px;
+  bottom:25px;
+  color:#72767c;
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  opacity:0;
+  animation:skipAppear .7s 2s ease forwards;
+}
+
+@keyframes skipAppear{
+  to{opacity:.8}
+}
+
+/* =========================
+   MAIN BACKGROUND
+========================= */
+
+#network{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  width:100%;
+  height:100%;
+  opacity:.65;
+}
+
+.bg-grid{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:90px 90px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+
+.orb{
+  position:fixed;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:-1;
+  filter:blur(60px);
+}
+
+.orb.one{
+  width:420px;
+  height:420px;
+  background:rgba(214,173,88,.07);
+  top:8%;
+  right:-160px;
+  animation:orbMove 14s ease-in-out infinite alternate;
+}
+
+.orb.two{
+  width:350px;
+  height:350px;
+  background:rgba(95,110,150,.055);
+  bottom:12%;
+  left:-180px;
+  animation:orbMove 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orbMove{
+  from{transform:translate(0,0) scale(1)}
+  to{transform:translate(-90px,70px) scale(1.25)}
+}
+
+/* =========================
+   CURSOR
+========================= */
+
+.cursor-dot,
+.cursor-ring{
+  position:fixed;
+  pointer-events:none;
+  z-index:10000;
+  transform:translate(-50%,-50%);
+  display:none;
+}
+
+@media(min-width:900px){
+  .cursor-dot{
+    display:block;
+    width:5px;
+    height:5px;
+    background:var(--gold2);
+    border-radius:50%;
+    box-shadow:0 0 12px var(--gold);
+  }
+
+  .cursor-ring{
+    display:block;
+    width:34px;
+    height:34px;
+    border:1px solid rgba(214,173,88,.45);
+    border-radius:50%;
+    transition:
+      width .25s ease,
+      height .25s ease,
+      background .25s ease;
+  }
+
+  body.cursor-hover .cursor-ring{
+    width:58px;
+    height:58px;
+    background:rgba(214,173,88,.06);
+  }
+}
+
+/* =========================
+   SCROLL PROGRESS
+========================= */
+
+.progress{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:2px;
+  z-index:9998;
+  background:linear-gradient(90deg,var(--gold),var(--gold2),white);
+  box-shadow:0 0 14px rgba(214,173,88,.7);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:82px;
+  z-index:500;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5vw;
+  border-bottom:1px solid transparent;
+  transition:.5s ease;
+}
+
+nav.scrolled{
+  height:68px;
+  background:rgba(5,6,7,.78);
+  backdrop-filter:blur(22px);
+  border-bottom-color:var(--line);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:800;
+  letter-spacing:.12em;
+  font-size:15px;
+}
+
+.logo-mark{
+  width:31px;
+  height:31px;
+  position:relative;
+}
+
+.logo-mark:before,
+.logo-mark:after{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border:1px solid var(--gold);
+  transform:rotate(45deg);
+}
+
+.logo-mark:after{
+  inset:9px;
+  border-color:rgba(244,213,138,.5);
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+.nav-links a{
+  position:relative;
+  font-size:11px;
+  color:#a4a7ac;
+  letter-spacing:.08em;
+  transition:.3s ease;
+}
+
+.nav-links a:hover{
+  color:white;
+}
+
+.nav-links a:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:0;
+  height:1px;
+  background:var(--gold);
+  transition:.35s var(--ease);
+}
+
+.nav-links a:hover:after{
+  width:100%;
+}
+
+.nav-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 17px;
+  border:1px solid var(--goldline);
+  background:rgba(214,173,88,.035);
+  font-size:10px;
+  letter-spacing:.08em;
+  transition:.35s var(--ease);
+}
+
+.nav-cta:hover{
+  background:var(--gold);
+  color:#080909;
+  transform:translateY(-2px);
+}
+
+.menu-btn{
+  display:none;
+  width:42px;
+  height:42px;
+  background:transparent;
+  border:1px solid var(--line);
+  color:white;
+  font-size:20px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:grid;
+  place-items:center;
+  padding:150px 6vw 100px;
+  overflow:hidden;
+}
+
+.hero-inner{
+  width:min(1240px,100%);
+  display:grid;
+  grid-template-columns:1.03fr .97fr;
+  gap:7vw;
+  align-items:center;
+}
+
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--gold2);
+  font-family:"DM Mono",monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:25px;
+}
+
+.eyebrow:before{
+  content:"";
+  width:30px;
+  height:1px;
+  background:var(--gold);
+  box-shadow:0 0 8px var(--gold);
+}
+
+.hero h1{
+  font-size:clamp(48px,7vw,102px);
+  line-height:.92;
+  letter-spacing:-.055em;
+  font-weight:800;
+  max-width:800px;
+}
+
+.hero h1 .gold{
+  color:var(--gold2);
+  position:relative;
+}
+
+.hero h1 .gold:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:100%;
+  height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  animation:headingLine 3s ease-in-out infinite;
+}
+
+@keyframes headingLine{
+  0%,100%{transform:scaleX(.3);transform-origin:left}
+  50%{transform:scaleX(1);transform-origin:left}
+}
+
+.hero-copy{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.9;
+  max-width:540px;
+  margin-top:32px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:13px;
+  margin-top:35px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:49px;
+  padding:0 22px;
+  border:1px solid var(--line);
+  font-size:10px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  overflow:hidden;
+  transition:.4s var(--ease);
+}
+
+.btn:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:var(--gold);
+  transform:translateY(105%);
+  transition:.45s var(--ease);
+  z-index:-1;
+}
+
+.btn:hover{
+  color:#050607;
+  border-color:var(--gold);
+  transform:translateY(-3px);
+}
+
+.btn:hover:before{
+  transform:translateY(0);
+}
+
+.btn.primary{
+  background:var(--gold);
+  color:#070707;
+  border-color:var(--gold);
+}
+
+.btn.primary:before{
+  background:var(--gold2);
+}
+
+.hero-note{
+  margin-top:26px;
+  font-size:10px;
+  color:#62666c;
+  font-family:"DM Mono",monospace;
+}
+
+/* HERO DASHBOARD */
+
+.dashboard{
+  position:relative;
+  min-height:480px;
+  perspective:1000px;
+}
+
+.dashboard-card{
+  position:absolute;
+  inset:35px 0 20px 0;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012)),
+    rgba(7,9,12,.76);
+  backdrop-filter:blur(20px);
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.45),
+    inset 0 1px rgba(255,255,255,.04);
+  padding:27px;
+  transform:rotateY(-7deg) rotateX(3deg);
+  transition:transform .7s var(--ease);
+}
+
+.dashboard:hover .dashboard-card{
+  transform:rotateY(0) rotateX(0) translateY(-5px);
+}
+
+.dash-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+
+.dash-label{
+  font-size:10px;
+  color:#777c83;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.dash-value{
+  margin-top:6px;
+  font-size:25px;
+  font-weight:700;
+}
+
+.dash-status{
+  font-size:9px;
+  color:#a9c9a0;
+  padding:6px 8px;
+  border:1px solid rgba(140,190,125,.2);
+}
+
+.chart-area{
+  position:relative;
+  height:230px;
+  margin-top:22px;
+  overflow:hidden;
+}
+
+.chart-grid{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:25% 25%;
+}
+
+.main-chart{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+
+.main-chart path{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:1000;
+  stroke-dashoffset:1000;
+}
+
+.revealed .main-chart path{
+  animation:mainChart 2.3s 0.2s var(--ease) forwards;
+}
+
+@keyframes mainChart{
+  to{stroke-dashoffset:0}
+}
+
+.chart-fill{
+  fill:url(#chartGradient);
+  opacity:.13;
+}
+
+.dash-bottom{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:18px;
+}
+
+.mini{
+  padding:12px;
+  border:1px solid var(--line);
+}
+
+.mini small{
+  display:block;
+  color:#666b72;
+  font-size:8px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.mini strong{
+  display:block;
+  margin-top:7px;
+  font-size:15px;
+}
+
+.float-data{
+  position:absolute;
+  padding:13px 15px;
+  border:1px solid var(--goldline);
+  background:rgba(8,10,12,.86);
+  backdrop-filter:blur(15px);
+  box-shadow:0 20px 45px rgba(0,0,0,.3);
+  animation:floatData 5s ease-in-out infinite;
+}
+
+.float-data small{
+  color:#666a71;
+  font-size:8px;
+  display:block;
+  letter-spacing:.12em;
+}
+
+.float-data strong{
+  font-size:17px;
+  display:block;
+  margin-top:5px;
+}
+
+.float-one{
+  top:10px;
+  right:-30px;
+}
+
+.float-two{
+  left:-45px;
+  bottom:40px;
+  animation-delay:1.2s;
+}
+
+@keyframes floatData{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-13px)}
+}
+
+/* =========================
+   TICKER
+========================= */
+
+.ticker{
+  width:100%;
+  overflow:hidden;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.012);
+}
+
+.ticker-track{
+  display:flex;
+  width:max-content;
+  animation:ticker 25s linear infinite;
+}
+
+.ticker-item{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  padding:20px 30px;
+  color:#686d74;
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  letter-spacing:.18em;
+  white-space:nowrap;
+}
+
+.ticker-item b{
+  width:5px;
+  height:5px;
+  background:var(--gold);
+  border-radius:50%;
+  box-shadow:0 0 10px var(--gold);
+}
+
+@keyframes ticker{
+  to{transform:translateX(-50%)}
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+  position:relative;
+}
+
+.section{
+  padding:140px 6vw;
+}
+
+.section-inner{
+  width:min(1240px,100%);
+  margin:auto;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:50px;
+  align-items:flex-end;
+  margin-bottom:60px;
+}
+
+.section-kicker{
+  color:var(--gold2);
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  margin-bottom:17px;
+}
+
+.section-title{
+  font-size:clamp(35px,5vw,66px);
+  line-height:1;
+  letter-spacing:-.045em;
+  max-width:700px;
+}
+
+.section-description{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:13px;
+  max-width:390px;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.service{
+  position:relative;
+  min-height:290px;
+  padding:28px;
+  border:1px solid var(--line);
+  background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.008));
+  overflow:hidden;
+  transition:
+    transform .5s var(--ease),
+    border-color .5s ease,
+    background .5s ease;
+}
+
+.service:before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-90px;
+  top:-90px;
+  border-radius:50%;
+  background:rgba(214,173,88,.1);
+  filter:blur(35px);
+  opacity:0;
+  transition:.5s ease;
+}
+
+.service:hover{
+  transform:translateY(-9px);
+  border-color:var(--goldline);
+  background:linear-gradient(145deg,rgba(214,173,88,.055),rgba(255,255,255,.012));
+}
+
+.service:hover:before{
+  opacity:1;
+}
+
+.service-number{
+  font-family:"DM Mono",monospace;
+  color:#555a61;
+  font-size:10px;
+}
+
+.service-icon{
+  width:43px;
+  height:43px;
+  border:1px solid var(--goldline);
+  display:grid;
+  place-items:center;
+  color:var(--gold2);
+  margin-top:45px;
+  font-size:17px;
+}
+
+.service h3{
+  margin-top:20px;
+  font-size:18px;
+}
+
+.service p{
+  margin-top:11px;
+  color:#777c83;
+  font-size:12px;
+  line-height:1.7;
+  max-width:310px;
+}
+
+.service-arrow{
+  position:absolute;
+  right:25px;
+  bottom:25px;
+  color:#5e6369;
+  transition:.35s ease;
+}
+
+.service:hover .service-arrow{
+  color:var(--gold2);
+  transform:translate(4px,-4px);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-layout{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:8vw;
+  align-items:center;
+}
+
+.about-text h2{
+  font-size:clamp(38px,5vw,67px);
+  line-height:.98;
+  letter-spacing:-.05em;
+}
+
+.about-text h2 span{
+  color:var(--gold2);
+}
+
+.about-text p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.9;
+  margin-top:30px;
+  max-width:560px;
+}
+
+.about-card{
+  border:1px solid var(--line);
+  padding:30px;
+  background:rgba(255,255,255,.018);
+}
+
+.metric{
+  padding:23px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.metric:last-child{
+  border-bottom:0;
+}
+
+.metric-head{
+  display:flex;
+  justify-content:space-between;
+  font-size:10px;
+  letter-spacing:.08em;
+  color:#969aa0;
+}
+
+.metric-head b{
+  color:var(--gold2);
+}
+
+.metric-bar{
+  height:3px;
+  margin-top:13px;
+  background:#1b1e23;
+  overflow:hidden;
+}
+
+.metric-bar i{
+  display:block;
+  width:0;
+  height:100%;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  box-shadow:0 0 12px rgba(214,173,88,.5);
+  transition:width 1.5s 0.2s var(--ease);
+}
+
+.visible .metric:nth-child(1) .metric-bar i{width:82%}
+.visible .metric:nth-child(2) .metric-bar i{width:94%}
+.visible .metric:nth-child(3) .metric-bar i{width:76%}
+.visible .metric:nth-child(4) .metric-bar i{width:89%}
+
+/* =========================
+   PROCESS
+========================= */
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.process{
+  padding:35px 28px;
+  border-right:1px solid var(--line);
+  min-height:220px;
+}
+
+.process:last-child{
+  border-right:0;
+}
+
+.process-num{
+  font-family:"DM Mono",monospace;
+  font-size:10px;
+  color:var(--gold);
+}
+
+.process h3{
+  margin-top:55px;
+  font-size:17px;
+}
+
+.process p{
+  color:#73777e;
+  font-size:11px;
+  line-height:1.7;
+  margin-top:12px;
+}
+
+/* =========================
+   INSIGHTS
+========================= */
+
+.insight-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.insight{
+  min-height:270px;
+  border:1px solid var(--line);
+  padding:26px;
+  position:relative;
+  overflow:hidden;
+}
+
+.insight-lines{
+  position:absolute;
+  inset:0;
+  opacity:.35;
+  background:
+    repeating-linear-gradient(
+      -35deg,
+      transparent 0 18px,
+      rgba(214,173,88,.08) 19px 20px
+    );
+  transform:translateX(-30%);
+  transition:1s ease;
+}
+
+.insight:hover .insight-lines{
+  transform:translateX(10%);
+}
+
+.insight-tag{
+  position:relative;
+  color:var(--gold2);
+  font-family:"DM Mono",monospace;
+  font-size:8px;
+  letter-spacing:.18em;
+}
+
+.insight h3{
+  position:relative;
+  margin-top:80px;
+  font-size:21px;
+  max-width:330px;
+  line-height:1.25;
+}
+
+.insight span{
+  position:absolute;
+  right:25px;
+  bottom:23px;
+  color:#666a70;
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq-wrap{
+  max-width:900px;
+  margin:auto;
+}
+
+.faq{
+  border-top:1px solid var(--line);
+}
+
+.faq:last-child{
+  border-bottom:1px solid var(--line);
+}
+
+.faq-question{
+  width:100%;
+  background:transparent;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-align:left;
+  padding:25px 0;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.faq-question span:last-child{
+  color:var(--gold);
+  font-size:20px;
+  transition:.3s ease;
+}
+
+.faq.open .faq-question span:last-child{
+  transform:rotate(45deg);
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .5s var(--ease);
+}
+
+.faq-answer p{
+  color:#777c83;
+  font-size:12px;
+  line-height:1.8;
+  padding:0 45px 25px 0;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+  padding:150px 6vw;
+}
+
+.contact-box{
+  width:min(1240px,100%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  padding:55px;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(circle at 85% 20%,rgba(214,173,88,.08),transparent 30%),
+    rgba(255,255,255,.018);
+}
+
+.contact-title{
+  font-size:clamp(40px,5vw,70px);
+  line-height:.95;
+  letter-spacing:-.05em;
+}
+
+.contact-title span{
+  color:var(--gold2);
+}
+
+.contact-copy{
+  margin-top:25px;
+  color:#777c83;
+  line-height:1.8;
+  font-size:13px;
+  max-width:500px;
+}
+
+.contact-details{
+  margin-top:38px;
+  display:grid;
+  gap:14px;
+}
+
+.contact-detail{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  color:#aaaeb3;
+  font-size:12px;
+}
+
+.contact-detail b{
+  width:34px;
+  height:34px;
+  border:1px solid var(--goldline);
+  display:grid;
+  place-items:center;
+  color:var(--gold2);
+  font-size:11px;
+}
+
+.contact-form{
+  display:grid;
+  gap:12px;
+}
+
+.field{
+  width:100%;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.2);
+  color:white;
+  padding:16px;
+  outline:none;
+  transition:.3s ease;
+}
+
+.field::placeholder{
+  color:#5f646b;
+}
+
+.field:focus{
+  border-color:var(--goldline);
+  box-shadow:0 0 25px rgba(214,173,88,.05);
+}
+
+textarea.field{
+  min-height:140px;
+  resize:vertical;
+}
+
+/* =========================
+   FINAL CTA
+========================= */
+
+.final{
+  min-height:70vh;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:120px 6vw;
+  overflow:hidden;
+}
+
+.final:before{
+  content:"";
+  position:absolute;
+  width:650px;
+  height:650px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(214,173,88,.1),transparent 65%);
+  filter:blur(15px);
+}
+
+.final-content{
+  position:relative;
+}
+
+.final-small{
+  color:var(--gold2);
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  letter-spacing:.3em;
+}
+
+.final h2{
+  margin-top:22px;
+  font-size:clamp(55px,10vw,145px);
+  line-height:.82;
+  letter-spacing:-.065em;
+}
+
+.final h2 span{
+  color:var(--gold2);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:30px 6vw;
+}
+
+.footer-inner{
+  width:min(1240px,100%);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.footer-copy{
+  color:#555a61;
+  font-size:9px;
+  font-family:"DM Mono",monospace;
+  letter-spacing:.08em;
+}
+
+.footer-links{
+  display:flex;
+  gap:20px;
+}
+
+.footer-links a{
+  color:#656970;
+  font-size:9px;
+}
+
+.footer-links a:hover{
+  color:var(--gold2);
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:
+    opacity 1s var(--ease),
+    transform 1s var(--ease);
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+  nav{
+    padding:0 5vw;
+  }
+
+  .nav-links,
+  .nav-cta{
+    display:none;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav-mobile-open .nav-links{
+    position:absolute;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    top:68px;
+    left:0;
+    width:100%;
+    padding:10px 6vw 25px;
+    background:rgba(5,6,7,.97);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav-mobile-open .nav-links a{
+    width:100%;
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .hero{
+    padding-top:130px;
+  }
+
+  .hero-inner{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard{
+    min-height:410px;
+  }
+
+  .dashboard-card{
+    inset:20px 0 10px;
+  }
+
+  .float-one{
+    right:-5px;
+  }
+
+  .float-two{
+    left:-5px;
+  }
+
+  .services-grid,
+  .insight-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .about-layout{
+    grid-template-columns:1fr;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .process:nth-child(2){
+    border-right:0;
+  }
+
+  .process:nth-child(-n+2){
+    border-bottom:1px solid var(--line);
+  }
+
+  .contact-box{
+    grid-template-columns:1fr;
+    padding:35px;
+  }
+}
+
+@media(max-width:600px){
+
+  .intro-brand h1{
+    letter-spacing:.09em;
+  }
+
+  .intro-sub{
+    letter-spacing:.3em;
+  }
+
+  .hero{
+    padding-left:5vw;
+    padding-right:5vw;
+  }
+
+  .hero h1{
+    font-size:48px;
+  }
+
+  .hero-copy{
+    font-size:13px;
+  }
+
+  .dashboard{
+    min-height:350px;
+  }
+
+  .dashboard-card{
+    padding:18px;
+  }
+
+  .dash-value{
+    font-size:21px;
+  }
+
+  .chart-area{
+    height:165px;
+  }
+
+  .float-data{
+    padding:10px;
+  }
+
+  .float-data strong{
+    font-size:13px;
+  }
+
+  .section{
+    padding:95px 5vw;
+  }
+
+  .section-head{
+    display:block;
+  }
+
+  .section-description{
+    margin-top:25px;
+  }
+
+  .services-grid,
+  .insight-grid{
+    grid-template-columns:1fr;
+  }
+
+  .service{
+    min-height:250px;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr;
+  }
+
+  .process{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .process:last-child{
+    border-bottom:0;
+  }
+
+  .process h3{
+    margin-top:35px;
+  }
+
+  .contact{
+    padding:90px 5vw;
+  }
+
+  .contact-box{
+    padding:28px 20px;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *:before,
+  *:after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+
+  #intro{
+    display:none;
+  }
+
+  body.intro-active{
+    overflow:auto;
+  }
+}
+</style>
+</head>
+
+<body class="intro-active">
+
+<!-- =====================================================
+     8 SECOND CINEMATIC FINORA INTRO
+===================================================== -->
+
+<div id="intro" aria-label="FINORA introduction">
+
+  <div class="intro-grid"></div>
+  <div class="intro-glow"></div>
+
+  <div class="intro-particles">
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+    <i class="ip"></i>
+  </div>
+
+  <div class="intro-lines">
+    <i class="intro-line line1"></i>
+    <i class="intro-line line2"></i>
+    <i class="intro-line line3"></i>
+  </div>
+
+  <svg class="intro-chart"
+       viewBox="0 0 760 300"
+       preserveAspectRatio="none">
+
+    <defs>
+      <linearGradient id="introChartGradient"
+                      x1="0" y1="0"
+                      x2="0" y2="1">
+        <stop offset="0%" stop-color="#d6ad58" stop-opacity=".28"/>
+        <stop offset="100%" stop-color="#d6ad58" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+
+    <path
+      class="chart-path"
+      d="M0 235
+         C60 225 85 210 125 220
+         C165 230 185 175 230 190
+         C275 205 290 160 330 168
+         C370 176 395 115 430 135
+         C470 157 485 105 525 118
+         C565 132 585 75 620 92
+         C660 110 685 52 720 70
+         C740 78 750 50 760 40"/>
+
+    <circle class="chart-node" cx="125" cy="220" r="4"/>
+    <circle class="chart-node" cx="230" cy="190" r="4"/>
+    <circle class="chart-node" cx="330" cy="168" r="4"/>
+    <circle class="chart-node" cx="525" cy="118" r="4"/>
+    <circle class="chart-node" cx="720" cy="70" r="4"/>
+  </svg>
+
+  <div class="intro-brand">
+    <h1>FIN<span>ORA</span></h1>
+    <div class="intro-sub">GLOBAL SERVICES</div>
+    <div class="intro-tag">Finance With Clarity</div>
+  </div>
+
+  <div class="intro-sweep"></div>
+
+  <div class="intro-skip">
+    Tap to enter
+  </div>
+</div>
+
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
+
+<div class="progress" id="progress"></div>
+
+<canvas id="network"></canvas>
+
+<div class="bg-grid"></div>
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+
+<!-- NAVIGATION -->
+
+<nav id="nav">
+
+  <a href="#home" class="logo">
+    <span class="logo-mark"></span>
+    <span>FINORA</span>
+  </a>
+
+  <div class="nav-links">
+
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#approach">Approach</a>
+    <a href="#insights">Insights</a>
+    <a href="#contact">Contact</a>
+
+  </div>
+
+  <a href="#contact" class="nav-cta magnetic">
+    Start a Conversation ↗
+  </a>
+
+  <button class="menu-btn" id="menuBtn">☰</button>
+
+</nav>
+
+
+<!-- HERO -->
+
+<main>
+
+<section class="hero" id="home">
+
+  <div class="hero-inner">
+
+    <div class="hero-content reveal">
+
+      <div class="eyebrow">
+        Financial Intelligence
+      </div>
+
+      <h1>
+        FINANCE<br>
+        WITH <span class="gold">CLARITY.</span>
+      </h1>
+
+      <p class="hero-copy">
+        FINORA GLOBAL SERVICES helps businesses bring structure,
+        clarity and confidence to their financial operations —
+        from accounting and reporting to business support and
+        financial insight.
+      </p>
+
+      <div class="hero-actions">
+
+        <a href="#contact" class="btn primary magnetic">
+          Start a Conversation ↗
+        </a>
+
+        <a href="#services" class="btn magnetic">
+          Explore Services ↓
+        </a>
+
+      </div>
+
+      <div class="hero-note">
+        ACCOUNTING · REPORTING · ADVISORY · BUSINESS SUPPORT
+      </div>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <div class="dashboard reveal">
+
+      <div class="dashboard-card">
+
+        <div class="dash-top">
+
+          <div>
+            <div class="dash-label">
+              Financial Overview
+            </div>
+
+            <div class="dash-value">
+              Business Intelligence
+            </div>
+          </div>
+
+          <div class="dash-status">
+            ● STRUCTURED
+          </div>
+
+        </div>
+
+        <div class="chart-area">
+
+          <div class="chart-grid"></div>
+
+          <svg class="main-chart"
+               viewBox="0 0 700 260"
+               preserveAspectRatio="none">
+
+            <defs>
+
+              <linearGradient id="chartGradient"
+                              x1="0"
+                              y1="0"
+                              x2="0"
+                              y2="1">
+
+                <stop offset="0%"
+                      stop-color="#d6ad58"
+                      stop-opacity=".55"/>
+
+                <stop offset="100%"
+                      stop-color="#d6ad58"
+                      stop-opacity="0"/>
+
+              </linearGradient>
+
+            </defs>
+
+            <path
+              class="chart-fill"
+              d="M0 225
+                 C70 215 80 190 130 200
+                 C180 210 195 175 245 182
+                 C295 190 320 140 355 158
+                 C400 180 425 125 465 138
+                 C505 150 525 90 565 108
+                 C610 128 635 55 700 70
+                 L700 260
+                 L0 260 Z"/>
+
+            <path
+              d="M0 225
+                 C70 215 80 190 130 200
+                 C180 210 195 175 245 182
+                 C295 190 320 140 355 158
+                 C400 180 425 125 465 138
+                 C505 150 525 90 565 108
+                 C610 128 635 55 700 70"/>
+
+          </svg>
+
+        </div>
+
+        <div class="dash-bottom">
+
+          <div class="mini">
+            <small>Structure</small>
+            <strong>Clear</strong>
+          </div>
+
+          <div class="mini">
+            <small>Reporting</small>
+            <strong>Precise</strong>
+          </div>
+
+          <div class="mini">
+            <small>Insight</small>
+            <strong>Actionable</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="float-data float-one">
+        <small>Financial Focus</small>
+        <strong>01 — Clarity</strong>
+      </div>
+
+      <div class="float-data float-two">
+        <small>Business Direction</small>
+        <strong>↑ Forward</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TICKER -->
+
+<div class="ticker">
+
+  <div class="ticker-track">
+
+    <div class="ticker-item"><b></b> ACCOUNTING</div>
+    <div class="ticker-item"><b></b> FINANCIAL REPORTING</div>
+    <div class="ticker-item"><b></b> TAX SUPPORT</div>
+    <div class="ticker-item"><b></b> BUSINESS SUPPORT</div>
+    <div class="ticker-item"><b></b> FINANCIAL INSIGHT</div>
+    <div class="ticker-item"><b></b> BUSINESS CLARITY</div>
+
+    <div class="ticker-item"><b></b> ACCOUNTING</div>
+    <div class="ticker-item"><b></b> FINANCIAL REPORTING</div>
+    <div class="ticker-item"><b></b> TAX SUPPORT</div>
+    <div class="ticker-item"><b></b> BUSINESS SUPPORT</div>
+    <div class="ticker-item"><b></b> FINANCIAL INSIGHT</div>
+    <div class="ticker-item"><b></b> BUSINESS CLARITY</div>
+
+  </div>
+
+</div>
+
+
+<!-- SERVICES -->
+
+<section class="section" id="services">
+
+  <div class="section-inner">
+
+    <div class="section-head reveal">
+
+      <div>
+
+        <div class="section-kicker">
+          What We Do
+        </div>
+
+        <h2 class="section-title">
+          Financial structure<br>
+          built for <span style="color:var(--gold2)">forward motion.</span>
+        </h2>
+
+      </div>
+
+      <p class="section-description">
+        Practical financial services designed to help businesses
+        understand their numbers, organize their operations and
+        move forward with greater confidence.
+      </p>
+
+    </div>
+
+
+    <div class="services-grid">
+
+      <article class="service reveal">
+
+        <span class="service-number">01</span>
+
+        <div class="service-icon">∑</div>
+
+        <h3>Accounting & Bookkeeping</h3>
+
+        <p>
+          Organized financial records that give your business
+          a clearer view of its day-to-day financial position.
+        </p>
+
+        <span class="service-arrow">↗</span>
+
+      </article>
+
+
+      <article class="service reveal">
+
+        <span class="service-number">02</span>
+
+        <div class="service-icon">▤</div>
+
+        <h3>Financial Reporting</h3>
+
+        <p>
+          Clear reporting that transforms financial information
+          into useful business understanding.
+        </p>
+
+        <span class="service-arrow">↗</span>
+
+      </article>
+
+
+      <article class="service reveal">
+
+        <span class="service-number">03</span>
+
+        <div class="service-icon">%</div>
+
+        <h3>Tax Support</h3>
+
+        <p>
+          Structured support for keeping financial information
+          organized and ready for tax-related requirements.
+        </p>
+
+        <span class="service-arrow">↗</span>
+
+      </article>
+
+
+      <article class="service reveal">
+
+        <span class="service-number">04</span>
+
+        <div class="service-icon">◇</div>
+
+        <h3>Financial Advisory</h3>
+
+        <p>
+          Financial perspective that helps business owners
+          understand options and plan their next steps.
+        </p>
+
+        <span class="service-arrow">↗</span>
+
+      </article>
+
+
+      <article class="service reveal">
+
+        <span class="service-number">05</span>
+
+        <div class="service-icon">↗</div>
+
+        <h3>Business Support</h3>
+
+        <p>
+          Practical support that connects financial organization
+          with wider business needs.
+        </p>
+
+        <span class="service-arrow">↗</span>
+
+      </article>
+
+
+      <article class="service reveal">
+
+        <span class="service-number">06</span>
+
+        <div class="service-icon">⌁</div>
+
+        <h3>Business Insights</h3>
+
+        <p>
+          Turn financial information into clearer signals,
+          patterns and decisions for the road ahead.
+        </p>
+
+        <span class="service-arrow">↗</span>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+  <div class="section-inner">
+
+    <div class="about-layout">
+
+      <div class="about-text reveal">
+
+        <div class="section-kicker">
+          About Finora
+        </div>
+
+        <h2>
+          Numbers are more useful
+          when they become
+          <span>clarity.</span>
+        </h2>
+
+        <p>
+          FINORA GLOBAL SERVICES is built around a simple idea:
+          financial information should help businesses understand
+          where they are, what matters and where they can go next.
+        </p>
+
+        <p>
+          We combine structured financial processes with a
+          practical business perspective, helping turn complex
+          information into something easier to understand and use.
+        </p>
+
+      </div>
+
+
+      <div class="about-card reveal">
+
+        <div class="metric">
+
+          <div class="metric-head">
+            <span>Financial Structure</span>
+            <b>82%</b>
+          </div>
+
+          <div class="metric-bar">
+            <i></i>
+          </div>
+
+        </div>
+
+
+        <div class="metric">
+
+          <div class="metric-head">
+            <span>Reporting Clarity</span>
+            <b>94%</b>
+          </div>
+
+          <div class="metric-bar">
+            <i></i>
+          </div>
+
+        </div>
+
+
+        <div class="metric">
+
+          <div class="metric-head">
+            <span>Business Insight</span>
+            <b>76%</b>
+          </div>
+
+          <div class="metric-bar">
+            <i></i>
+          </div>
+
+        </div>
+
+
+        <div class="metric">
+
+          <div class="metric-head">
+            <span>Forward Planning</span>
+            <b>89%</b>
+          </div>
+
+          <div class="metric-bar">
+            <i></i>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- APPROACH -->
+
+<section class="section" id="approach">
+
+  <div class="section-inner">
+
+    <div class="section-head reveal">
+
+      <div>
+
+        <div class="section-kicker">
+          Our Approach
+        </div>
+
+        <h2 class="section-title">
+          From information<br>
+          to <span style="color:var(--gold2)">direction.</span>
+        </h2>
+
+      </div>
+
+      <p class="section-description">
+        A straightforward process designed to bring order to
+        financial information and make the next step clearer.
+      </p>
+
+    </div>
+
+
+    <div class="process-grid">
+
+      <div class="process reveal">
+
+        <span class="process-num">01 / Understand</span>
+
+        <h3>Understand</h3>
+
+        <p>
+          We begin by understanding the business, its financial
+          information and its priorities.
+        </p>
+
+      </div>
+
+
+      <div class="process reveal">
+
+        <span class="process-num">02 / Organize</span>
+
+        <h3>Organize</h3>
+
+        <p>
+          Information is structured into a clearer and more
+          useful financial picture.
+        </p>
+
+      </div>
+
+
+      <div class="process reveal">
+
+        <span class="process-num">03 / Analyze</span>
+
+        <h3>Analyze</h3>
+
+        <p>
+          Key patterns, information and financial signals are
+          brought into focus.
+        </p>
+
+      </div>
+
+
+      <div class="process reveal">
+
+        <span class="process-num">04 / Move Forward</span>
+
+        <h3>Move Forward</h3>
+
+        <p>
+          Clearer information supports better-informed
+          business planning and action.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- INSIGHTS -->
+
+<section class="section" id="insights">
+
+  <div class="section-inner">
+
+    <div class="section-head reveal">
+
+      <div>
+
+        <div class="section-kicker">
+          Financial Perspective
+        </div>
+
+        <h2 class="section-title">
+          Think beyond<br>
+          the <span style="color:var(--gold2)">numbers.</span>
+        </h2>
+
+      </div>
+
+      <p class="section-description">
+        Financial clarity is not only about recording what
+        happened. It is about understanding what the information
+        can tell you about the road ahead.
+      </p>
+
+    </div>
+
+
+    <div class="insight-grid">
+
+      <article class="insight reveal">
+
+        <div class="insight-lines"></div>
+
+        <div class="insight-tag">
+          FINANCIAL CLARITY
+        </div>
+
+        <h3>
+          Better organized information creates better visibility.
+        </h3>
+
+        <span>01 ↗</span>
+
+      </article>
+
+
+      <article class="insight reveal">
+
+        <div class="insight-lines"></div>
+
+        <div class="insight-tag">
+          BUSINESS THINKING
+        </div>
+
+        <h3>
+          Numbers become more valuable when connected to decisions.
+        </h3>
+
+        <span>02 ↗</span>
+
+      </article>
+
+
+      <article class="insight reveal">
+
+        <div class="insight-lines"></div>
+
+        <div class="insight-tag">
+          FORWARD MOTION
+        </div>
+
+        <h3>
+          Clarity gives businesses a stronger foundation for what comes next.
+        </h3>
+
+        <span>03 ↗</span>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section">
+
+  <div class="section-inner">
+
+    <div class="section-head reveal">
+
+      <div>
+
+        <div class="section-kicker">
+          Questions
+        </div>
+
+        <h2 class="section-title">
+          Frequently<br>
+          <span style="color:var(--gold2)">asked.</span>
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="faq-wrap">
+
+      <div class="faq reveal">
+
+        <button class="faq-question">
+          <span>What services does FINORA provide?</span>
+          <span>+</span>
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            FINORA provides accounting and bookkeeping,
+            financial reporting, tax support, financial advisory,
+            business support and financial insight services.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="faq reveal">
+
+        <button class="faq-question">
+          <span>Who can work with FINORA?</span>
+          <span>+</span>
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            FINORA is designed to support businesses that want
+            greater structure, visibility and clarity around
+            their financial information.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="faq reveal">
+
+        <button class="faq-question">
+          <span>How can I start a conversation?</span>
+          <span>+</span>
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            Use the contact section below to send an inquiry
+            directly to FINORA.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="faq reveal">
+
+        <button class="faq-question">
+          <span>Can FINORA help with business financial clarity?</span>
+          <span>+</span>
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            Yes. The FINORA approach connects organized
+            financial information with practical business
+            understanding and forward planning.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+  <div class="contact-box reveal">
+
+    <div>
+
+      <div class="section-kicker">
+        Start a Conversation
+      </div>
+
+      <h2 class="contact-title">
+        Let's bring<br>
+        <span>clarity</span> to<br>
+        your numbers.
+      </h2>
+
+      <p class="contact-copy">
+        Have a question or want to discuss your business needs?
+        Send FINORA a message and start the conversation.
+      </p>
+
+
+      <div class="contact-details">
+
+        <div class="contact-detail">
+
+          <b>✉</b>
+
+          <a href="mailto:info@finoraglobalservices.com">
+            info@finoraglobalservices.com
+          </a>
+
+        </div>
+
+
+        <div class="contact-detail">
+
+          <b>⌖</b>
+
+          <span>United Arab Emirates</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <form class="contact-form" id="contactForm">
+
+      <input
+        class="field"
+        id="name"
+        type="text"
+        placeholder="Your Name"
+        required
+      >
+
+      <input
+        class="field"
+        id="email"
+        type="email"
+        placeholder="Your Email"
+        required
+      >
+
+      <input
+        class="field"
+        id="company"
+        type="text"
+        placeholder="Company"
+      >
+
+      <textarea
+        class="field"
+        id="message"
+        placeholder="Tell us how we can help..."
+        required
+      ></textarea>
+
+      <button
+        class="btn primary magnetic"
+        type="submit">
+        Send Inquiry ↗
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- FINAL CTA -->
+
+<section class="final">
+
+  <div class="final-content reveal">
+
+    <div class="final-small">
+      FINORA GLOBAL SERVICES
+    </div>
+
+    <h2>
+      KNOW<br>
+      YOUR <span>NUMBERS.</span>
+    </h2>
+
+    <a
+      href="#contact"
+      class="btn primary magnetic"
+      style="margin-top:45px;">
+      Start a Conversation ↗
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-inner">
+
+    <div class="footer-copy">
+      © <span id="year"></span> FINORA GLOBAL SERVICES. ALL RIGHTS RESERVED.
+    </div>
+
+    <div class="footer-links">
+
+      <a href="#home">Back to Top ↑</a>
+
+      <a href="#contact">Contact</a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================
+   INTRO
+========================================= */
+
+const intro = document.getElementById("intro");
+
+function closeIntro(){
+
+  intro.classList.add("hide");
+
+  document.body.classList.remove("intro-active");
+
+}
+
+setTimeout(closeIntro,8000);
+
+intro.addEventListener("click",closeIntro);
+
+
+/* =========================================
+   YEAR
+========================================= */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+const nav = document.getElementById("nav");
+
+window.addEventListener("scroll",()=>{
+
+  if(window.scrollY > 40){
+    nav.classList.add("scrolled");
+  }else{
+    nav.classList.remove("scrolled");
+  }
+
+});
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+const menuBtn = document.getElementById("menuBtn");
+
+menuBtn.addEventListener("click",()=>{
+
+  nav.classList.toggle("nav-mobile-open");
+
+  menuBtn.textContent =
+    nav.classList.contains("nav-mobile-open")
+      ? "×"
+      : "☰";
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+  link.addEventListener("click",()=>{
+
+    nav.classList.remove("nav-mobile-open");
+
+    menuBtn.textContent="☰";
+
+  });
+
+});
+
+
+/* =========================================
+   SCROLL PROGRESS
+========================================= */
+
+const progress = document.getElementById("progress");
+
+window.addEventListener("scroll",()=>{
+
+  const scrollTop =
+    document.documentElement.scrollTop;
+
+  const height =
+    document.documentElement.scrollHeight -
+    document.documentElement.clientHeight;
+
+  progress.style.width =
+    ((scrollTop / height) * 100) + "%";
+
+});
+
+
+/* =========================================
+   REVEAL ON SCROLL
+========================================= */
+
+const revealObserver =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("visible");
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+document.querySelectorAll(".reveal")
+.forEach(el=>revealObserver.observe(el));
+
+
+/* =========================================
+   FAQ
+========================================= */
+
+document.querySelectorAll(".faq")
+.forEach(faq=>{
+
+  const question =
+    faq.querySelector(".faq-question");
+
+  const answer =
+    faq.querySelector(".faq-answer");
+
+  question.addEventListener("click",()=>{
+
+    const isOpen =
+      faq.classList.contains("open");
+
+    document.querySelectorAll(".faq")
+    .forEach(item=>{
+
+      item.classList.remove("open");
+
+      item.querySelector(".faq-answer")
+      .style.maxHeight = null;
+
+    });
+
+    if(!isOpen){
+
+      faq.classList.add("open");
+
+      answer.style.maxHeight =
+        answer.scrollHeight + "px";
+
+    }
+
+  });
+
+});
+
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+
+document.getElementById("contactForm")
+.addEventListener("submit",function(e){
+
+  e.preventDefault();
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const company =
+    document.getElementById("company").value.trim();
+
+  const message =
+    document.getElementById("message").value.trim();
+
+  const subject =
+    encodeURIComponent(
+      "FINORA Website Inquiry — " + name
+    );
+
+  const body =
+    encodeURIComponent(
+`Name: ${name}
+
+Email: ${email}
+
+Company: ${company}
+
+Message:
+${message}`
+    );
+
+  window.location.href =
+    `mailto:info@finoraglobalservices.com?subject=${subject}&body=${body}`;
+
+});
+
+
+/* =========================================
+   MAGNETIC BUTTONS
+========================================= */
+
+const magneticElements =
+  document.querySelectorAll(".magnetic");
+
+if(window.matchMedia("(pointer:fine)").matches){
+
+  magneticElements.forEach(el=>{
+
+    el.addEventListener("mousemove",e=>{
+
+      const rect =
+        el.getBoundingClientRect();
+
+      const x =
+        e.clientX - rect.left - rect.width / 2;
+
+      const y =
+        e.clientY - rect.top - rect.height / 2;
+
+      el.style.transform =
+        `translate(${x*.12}px,${y*.12}px)`;
+
+    });
+
+    el.addEventListener("mouseleave",()=>{
+
+      el.style.transform="";
+
+    });
+
+  });
+
+}
+
+
+/* =========================================
+   CUSTOM CURSOR
+========================================= */
+
+const dot =
+  document.querySelector(".cursor-dot");
+
+const ring =
+  document.querySelector(".cursor-ring");
+
+let mouseX=0;
+let mouseY=0;
+
+let ringX=0;
+let ringY=0;
+
+document.addEventListener("mousemove",e=>{
+
+  mouseX=e.clientX;
+  mouseY=e.clientY;
+
+  if(dot){
+
+    dot.style.left =
+      mouseX+"px";
+
+    dot.style.top =
+      mouseY+"px";
+
+  }
+
+});
+
+function cursorLoop(){
+
+  ringX +=
+    (mouseX-ringX)*.15;
+
+  ringY +=
+    (mouseY-ringY)*.15;
+
+  if(ring){
+
+    ring.style.left =
+      ringX+"px";
+
+    ring.style.top =
+      ringY+"px";
+
+  }
+
+  requestAnimationFrame(cursorLoop);
+
+}
+
+cursorLoop();
+
+
+document
+.querySelectorAll("a,button,.service,.insight")
+.forEach(el=>{
+
+  el.addEventListener("mouseenter",()=>{
+    document.body.classList.add("cursor-hover");
+  });
+
+  el.addEventListener("mouseleave",()=>{
+    document.body.classList.remove("cursor-hover");
+  });
+
+});
+
+
+/* =========================================
+   HERO PARALLAX
+========================================= */
+
+const dashboard =
+  document.querySelector(".dashboard");
+
+window.addEventListener("mousemove",e=>{
+
+  if(!dashboard ||
+     !window.matchMedia("(pointer:fine)").matches)
+    return;
+
+  const x =
+    (e.clientX / window.innerWidth - .5);
+
+  const y =
+    (e.clientY / window.innerHeight - .5);
+
+  dashboard.style.transform =
+    `translate(${x*10}px,${y*8}px)`;
+
+});
+
+
+/* =========================================
+   NETWORK / PARTICLE CANVAS
+========================================= */
+
+const canvas =
+  document.getElementById("network");
+
+const ctx =
+  canvas.getContext("2d");
+
+let particles=[];
+
+function resizeCanvas(){
+
+  canvas.width =
+    window.innerWidth *
+    Math.min(window.devicePixelRatio || 1,2);
+
+  canvas.height =
+    window.innerHeight *
+    Math.min(window.devicePixelRatio || 1,2);
+
+  canvas.style.width =
+    window.innerWidth+"px";
+
+  canvas.style.height =
+    window.innerHeight+"px";
+
+  createParticles();
+
+}
+
+function createParticles(){
+
+  const count =
+    Math.min(
+      75,
+      Math.floor(window.innerWidth/18)
+    );
+
+  particles=[];
+
+  for(let i=0;i<count;i++){
+
+    particles.push({
+
+      x:Math.random()*canvas.width,
+      y:Math.random()*canvas.height,
+
+      vx:(Math.random()-.5)*.18,
+      vy:(Math.random()-.5)*.18,
+
+      r:Math.random()*1.5+.3
+
+    });
+
+  }
+
+}
+
+function animateNetwork(){
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  const scale =
+    Math.min(window.devicePixelRatio || 1,2);
+
+  for(const p of particles){
+
+    p.x += p.vx*scale;
+    p.y += p.vy*scale;
+
+    if(p.x<0)p.x=canvas.width;
+    if(p.x>canvas.width)p.x=0;
+
+    if(p.y<0)p.y=canvas.height;
+    if(p.y>canvas.height)p.y=0;
+
+    ctx.beginPath();
+
+    ctx.arc(
+      p.x,
+      p.y,
+      p.r*scale,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fillStyle =
+      "rgba(214,173,88,.42)";
+
+    ctx.fill();
+
+  }
+
+  for(let i=0;i<particles.length;i++){
+
+    for(let j=i+1;j<particles.length;j++){
+
+      const a=particles[i];
+      const b=particles[j];
+
+      const dx=a.x-b.x;
+      const dy=a.y-b.y;
+
+      const distance =
+        Math.sqrt(dx*dx+dy*dy);
+
+      if(distance < 145*scale){
+
+        const alpha =
+          (1-distance/(145*scale))*.10;
+
+        ctx.beginPath();
+
+        ctx.moveTo(a.x,a.y);
+        ctx.lineTo(b.x,b.y);
+
+        ctx.strokeStyle =
+          `rgba(214,173,88,${alpha})`;
+
+        ctx.lineWidth=.6*scale;
+
+        ctx.stroke();
+
+      }
+
+    }
+
+  }
+
+  requestAnimationFrame(animateNetwork);
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize",resizeCanvas);
+
+animateNetwork();
+
+
+/* =========================================
+   SERVICE TILT
+========================================= */
+
+if(window.matchMedia("(pointer:fine)").matches){
+
+  document.querySelectorAll(".service")
+  .forEach(card=>{
+
+    card.addEventListener("mousemove",e=>{
+
+      const rect =
+        card.getBoundingClientRect();
+
+      const x =
+        e.clientX-rect.left;
+
+      const y =
+        e.clientY-rect.top;
+
+      const rotateY =
+        ((x/rect.width)-.5)*7;
+
+      const rotateX =
+        ((y/rect.height)-.5)*-7;
+
+      card.style.transform =
+        `perspective(700px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)
+         translateY(-9px)`;
+
+    });
+
+    card.addEventListener("mouseleave",()=>{
+
+      card.style.transform="";
+
+    });
+
+  });
+
+}
+
+
+/* =========================================
+   SMOOTH ANCHOR OFFSET
+========================================= */
+
+document.querySelectorAll('a[href^="#"]')
+.forEach(link=>{
+
+  link.addEventListener("click",e=>{
+
+    const target =
+      document.querySelector(
+        link.getAttribute("href")
+      );
+
+    if(!target)return;
+
+    e.preventDefault();
+
+    const top =
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      75;
+
+    window.scrollTo({
+
+      top,
+      behavior:"smooth"
+
+    });
+
+  });
+
+});
+
+
+/* =========================================
+   KEYBOARD ESCAPE
+========================================= */
+
+document.addEventListener("keydown",e=>{
+
+  if(e.key==="Escape"){
+
+    if(!intro.classList.contains("hide")){
+      closeIntro();
+    }
+
+    nav.classList.remove("nav-mobile-open");
+
+    if(menuBtn){
+      menuBtn.textContent="☰";
+    }
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
